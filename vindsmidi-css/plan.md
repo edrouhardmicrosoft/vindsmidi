@@ -49,7 +49,7 @@ This checklist outlines steps to set up, build, and distribute a Tailwind CSS 4.
   ```
 
 ## 5. Test in Vanilla HTML
-- [ ] Create `public/index.html` and link the generated CSS:
+- [x] Create `public/index.html` and link the generated CSS:
   ```html
   <!DOCTYPE html>
   <html lang="en">
@@ -64,9 +64,14 @@ This checklist outlines steps to set up, build, and distribute a Tailwind CSS 4.
   </body>
   </html>
   ```
-- [ ] Open in browser and verify styling.
+- [x] Open in browser and verify styling.
 
-## 6. Usage in Frameworks
+## 6. Customization
+- [ ] Extend theme settings, colors, fonts, spacing, etc. in `src/main.css` using the `@theme` directive.
+- [ ] Add and configure official or community plugins (forms, typography, aspect-ratio, etc.) in CSS if supported.
+- [ ] Update `src/main.css` with custom base or component layers if needed.
+
+## 7. Usage in Frameworks
 - [ ] React: import the CSS in `src/index.js` or `App.jsx`:
   ```js
   import '../dist/tailwind.css';
@@ -75,11 +80,6 @@ This checklist outlines steps to set up, build, and distribute a Tailwind CSS 4.
 - [ ] Svelte: import in `src/app.html` or `src/main.js`.
 - [ ] Web Components: link or inject `dist/tailwind.css` within Shadow DOM or `<head>`.
 - [ ] Solid: import in the entry file (e.g., `index.tsx`).
-
-## 7. Customization
-- [ ] Extend theme settings, colors, fonts, spacing, etc. in `src/main.css` using the `@theme` directive.
-- [ ] Add and configure official or community plugins (forms, typography, aspect-ratio, etc.) in CSS if supported.
-- [ ] Update `src/main.css` with custom base or component layers if needed.
 
 ## 8. Distribution
 - [ ] Ensure `dist/tailwind.css` is generated and minified.

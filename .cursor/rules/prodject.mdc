@@ -1,0 +1,13 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Tailwind CSS v4+ Portable Library Project Rules
+
+- Use CSS-first configuration: all theme, color, and breakpoint customizations go in `src/main.css` using `@theme` and CSS custom properties.
+- Build distributable CSS with: `tailwindcss -i src/main.css -o dist/tailwind.css --minify`.
+- Place test/demo HTML in `public/`, not `src/`.
+- If Tailwind content detection misses files (e.g., in `public/`), add `@source "../public";` to `src/main.css`.
+- `.gitignore` must exclude: `node_modules/`, `dist/`, logs, OS/editor files, `.env` files.
+- Keep `plan.md` up to date as steps are completed and best practices change.
