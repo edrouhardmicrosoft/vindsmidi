@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vindsmidi UI Component Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Simulate Fluent UI token variables */
+    :root {
+      /* Text colors */
+      --colorNeutralForeground1: #242424;
+      --colorNeutralForeground2: #616161;
+      --colorNeutralForeground3: #8a8a8a;
+      
+      /* Background colors */
+      --colorNeutralBackground1: #ffffff;
+      --colorNeutralBackground2: #f5f5f5;
+      --colorNeutralBackground4: #e0e0e0;
+      --colorNeutralBackground1Hover: #f5f5f5;
+      --colorNeutralBackground2Hover: #ebebeb;
+      
+      /* Border colors */
+      --colorNeutralStroke1: #d1d1d1;
+      --colorNeutralStroke1Hover: #c7c7c7;
+      --colorNeutralStroke2: #e0e0e0;
+      
+      /* Brand colors */
+      --colorBrandBackground: #0078d4;
+      --colorBrandBackgroundHover: #106ebe;
+      --colorBrandBackground3Static: #e9f3fc;
+      --colorCompoundBrandBackground: #e9f3fc;
+      --colorCompoundBrandBackgroundHover: #cde3f7;
+      
+      /* Brand strokes */
+      --colorBrandStroke1: #0078d4;
+      --colorBrandStroke2: #106ebe;
+      --colorCompoundBrandStroke: #0078d4;
+      --colorCompoundBrandStrokeHover: #106ebe;
+      
+      /* Alert colors */
+      --colorPaletteRedForeground2: #d13438;
+      --colorPaletteRedBorderActive: #d13438;
+      --colorPaletteGreenForeground2: #107c10; 
+      --colorPaletteGreenBorderActive: #107c10;
+      
+      /* Typography */
+      --fontFamilyBase: 'Segoe UI', system-ui, sans-serif;
+      --fontWeightRegular: 400;
+      --fontWeightMedium: 500;
+      --fontWeightSemibold: 600;
+      --fontWeightBold: 700;
+      
+      /* Font sizes */
+      --fontSizeBase100: 0.75rem;
+      --fontSizeBase200: 0.875rem;
+      --fontSizeBase300: 1rem;
+      --fontSizeBase400: 1.125rem;
+      --fontSizeBase500: 1.25rem;
+      --fontSizeBase600: 1.5rem;
+      --fontSizeHero700: 1.875rem;
+      --fontSizeHero800: 2.25rem;
+      --fontSizeHero900: 3rem;
+      
+      /* Border radius */
+      --borderRadiusSmall: 2px;
+      --borderRadiusMedium: 4px;
+      --borderRadiusLarge: 6px;
+    }
+    
+    body {
+      font-family: var(--fontFamilyBase);
+      color: var(--colorNeutralForeground1);
+      background-color: #f9f9f9;
+    }
+
+    /* Mock styles for component containers */
+    .component-frame {
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: var(--colorNeutralBackground1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+    }
+
+    .component-title {
+      font-size: var(--fontSizeBase600);
+      font-weight: var(--fontWeightSemibold);
+      margin-bottom: 20px;
+      color: var(--colorNeutralForeground1);
+    }
+
+    .note {
+      background-color: #ffffe0;
+      border: 1px solid #e6e6b8;
+      padding: 16px;
+      border-radius: 4px;
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="p-6 max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-2">Vindsmidi UI Component Showcase</h1>
+    <p class="text-gray-600 mb-8">A preview of the Fluent UI components styled with Tailwind CSS</p>
+    
+    <div class="note">
+      <h3 class="font-semibold mb-2">Note:</h3>
+      <p>This is a simplified preview that mocks the appearance of the components. For a fully functional demonstration, you would need to:</p>
+      <ol class="list-decimal ml-5 mt-2">
+        <ul class="list-disc ml-5">
+          <li>Bundle and render the React components with a tool like Next.js or Vite</li>
+          <li>Include the actual Fluent UI dependencies</li>
+          <li>Set up proper CSS token integration</li>
+        </ul>
+      </ol>
+      <p class="mt-2">The component-showcase.tsx file contains the full React implementation which can be used to create a working demo.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+      <!-- Typography -->
+      <div class="component-frame md:col-span-2">
+        <h2 class="component-title">Typography (Text)</h2>
+        <div class="space-y-4">
+          <p class="text-3xl font-semibold">Hero Display</p>
+          <p class="text-2xl font-semibold">Large Display</p>
+          <p class="text-xl font-semibold">Display</p>
+          <p class="text-lg font-semibold">Title Large</p>
+          <p class="text-base font-semibold">Title</p>
+          <p class="text-sm font-semibold">Subtitle</p>
+          <p class="text-base">Body Large</p>
+          <p class="text-sm">Body</p>
+          <p class="text-xs">Body Small</p>
+          <p class="text-xs text-gray-500">Caption</p>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="component-frame">
+        <h2 class="component-title">Button</h2>
+        <div class="space-y-4">
+          <div class="flex flex-wrap gap-2">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-md">Primary</button>
+            <button class="border border-gray-300 px-4 py-2 rounded-md">Outline</button>
+            <button class="bg-gray-100 px-4 py-2 rounded-md">Subtle</button>
+            <button class="px-4 py-2 rounded-md">Transparent</button>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button class="bg-blue-600 text-white px-3 py-1 text-sm rounded-md">Small</button>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-md">Default</button>
+            <button class="bg-blue-600 text-white px-6 py-3 rounded-md">Large</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="component-frame">
+        <h2 class="component-title">Card</h2>
+        <div class="border border-gray-200 rounded-md overflow-hidden">
+          <div class="border-b border-gray-200 p-4">
+            <h3 class="text-lg font-semibold">Card Title</h3>
+            <p class="text-gray-500 text-sm">Card description text</p>
+          </div>
+          <div class="p-4">
+            <p>Card content goes here.</p>
+          </div>
+          <div class="border-t border-gray-200 p-4 flex justify-between">
+            <button class="border border-gray-300 px-4 py-2 rounded-md">Cancel</button>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-md">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkbox -->
+      <div class="component-frame">
+        <h2 class="component-title">Checkbox</h2>
+        <div class="space-y-3">
+          <div class="flex items-center">
+            <div class="h-5 w-5 border border-gray-300 rounded mr-2"></div>
+            <span>Default checkbox</span>
+          </div>
+          <div class="flex items-center">
+            <div class="h-5 w-5 bg-blue-600 border border-blue-600 rounded mr-2 flex items-center justify-center">
+              <svg class="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path>
+              </svg>
+            </div>
+            <span>Checked checkbox</span>
+          </div>
+          <div class="flex items-center">
+            <div class="h-5 w-5 border border-gray-300 rounded-full mr-2"></div>
+            <span>Circular checkbox</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Radio -->
+      <div class="component-frame">
+        <h2 class="component-title">Radio</h2>
+        <div class="space-y-3">
+          <div class="flex items-center">
+            <div class="h-5 w-5 border border-gray-300 rounded-full mr-2 flex items-center justify-center">
+              <div class="h-2 w-2 bg-blue-600 rounded-full"></div>
+            </div>
+            <span>Option 1 (selected)</span>
+          </div>
+          <div class="flex items-center">
+            <div class="h-5 w-5 border border-gray-300 rounded-full mr-2"></div>
+            <span>Option 2</span>
+          </div>
+          <div class="flex items-center">
+            <div class="h-5 w-5 border border-gray-300 rounded-full mr-2"></div>
+            <span>Option 3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Switch -->
+      <div class="component-frame">
+        <h2 class="component-title">Switch</h2>
+        <div class="space-y-3">
+          <div class="flex items-center">
+            <div class="relative inline-block h-6 w-11 flex-shrink-0">
+              <div class="h-6 w-11 rounded-full bg-gray-200"></div>
+              <div class="absolute top-1 left-1 h-4 w-4 rounded-full bg-white shadow"></div>
+            </div>
+            <span class="ml-2">Off switch</span>
+          </div>
+          <div class="flex items-center">
+            <div class="relative inline-block h-6 w-11 flex-shrink-0">
+              <div class="h-6 w-11 rounded-full bg-blue-600"></div>
+              <div class="absolute top-1 left-6 h-4 w-4 rounded-full bg-white shadow"></div>
+            </div>
+            <span class="ml-2">On switch</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="component-frame">
+        <h2 class="component-title">Input</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Default input</label>
+            <input type="text" placeholder="Enter text" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Error input</label>
+            <input type="text" placeholder="Enter text" class="w-full px-3 py-2 border border-red-500 rounded-md">
+            <p class="mt-1 text-xs text-red-500">This field is required</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Select -->
+      <div class="component-frame">
+        <h2 class="component-title">Select</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Basic select</label>
+            <select class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white">
+              <option>Choose an option</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Required select</label>
+            <select class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white">
+              <option>Choose an option</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html> 

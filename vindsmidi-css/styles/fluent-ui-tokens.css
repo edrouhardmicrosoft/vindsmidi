@@ -1,0 +1,159 @@
+/* Fluent UI Design Tokens as CSS Custom Properties
+   Source: Fluent UI docs and codebase (2024)
+   Use as a reference or import into your Tailwind CSS v4+ setup for theming/customization.
+*/
+
+:root {
+  /* === Color Tokens === */
+  --colorBackgroundOverlay: #00000080;
+  --colorBrandBackground: #0078d4;
+  --colorBrandBackground2: #005a9e;
+  --colorBrandBackground2Hover: #004578;
+  --colorBrandBackground2Pressed: #003366;
+  --colorBrandBackground3Static: #e5f1fb;
+  --colorBrandBackground4Static: #c7e0f4;
+  --colorBrandBackgroundHover: #106ebe;
+  --colorBrandBackgroundInverted: #ffffff;
+  --colorBrandBackgroundInvertedHover: #f3f2f1;
+  --colorBrandBackgroundInvertedPressed: #e1dfdd;
+  --colorBrandBackgroundInvertedSelected: #c8c6c4;
+  --colorBrandBackgroundPressed: #004578;
+  --colorBrandBackgroundSelected: #005a9e;
+  --colorBrandBackgroundStatic: #0078d4;
+  --colorBrandForeground1: #0078d4;
+  --colorBrandForeground2: #005a9e;
+  --colorBrandForeground2Hover: #004578;
+  --colorBrandForeground2Pressed: #003366;
+  --colorBrandForegroundInverted: #ffffff;
+  --colorBrandForegroundInvertedHover: #f3f2f1;
+  --colorBrandForegroundInvertedPressed: #e1dfdd;
+  --colorBrandForegroundLink: #0078d4;
+  --colorBrandForegroundLinkHover: #005a9e;
+  --colorBrandForegroundLinkPressed: #004578;
+  --colorBrandForegroundLinkSelected: #003366;
+  --colorBrandForegroundOnLight: #0078d4;
+  --colorBrandForegroundOnLightHover: #005a9e;
+  --colorBrandForegroundOnLightPressed: #004578;
+  --colorBrandForegroundOnLightSelected: #003366;
+  --colorBrandShadowAmbient: #00000033;
+  --colorBrandShadowKey: #00000066;
+  --colorBrandStroke1: #0078d4;
+  --colorBrandStroke2: #005a9e;
+  --colorBrandStroke2Contrast: #ffffff;
+  --colorBrandStroke2Hover: #004578;
+  --colorBrandStroke2Pressed: #003366;
+  --colorCompoundBrandBackground: #e5f1fb;
+  --colorCompoundBrandBackgroundHover: #c7e0f4;
+  --colorCompoundBrandBackgroundPressed: #a6d1e6;
+  --colorCompoundBrandForeground1: #0078d4;
+  --colorCompoundBrandForeground1Hover: #005a9e;
+  --colorCompoundBrandForeground1Pressed: #004578;
+  --colorCompoundBrandStroke: #0078d4;
+  --colorCompoundBrandStrokeHover: #005a9e;
+  --colorCompoundBrandStrokePressed: #004578;
+  --colorNeutralBackground1: #ffffff;
+  --colorNeutralBackground1Hover: #f3f2f1;
+  --colorNeutralBackground1Pressed: #e1dfdd;
+  --colorNeutralBackground1Selected: #c8c6c4;
+  --colorNeutralBackground2: #f3f2f1;
+  --colorNeutralBackground2Hover: #e1dfdd;
+  --colorNeutralBackground2Pressed: #c8c6c4;
+  --colorNeutralBackground2Selected: #a19f9d;
+  --colorNeutralBackground3: #e1dfdd;
+  --colorNeutralBackground3Hover: #c8c6c4;
+  --colorNeutralBackground3Pressed: #a19f9d;
+  --colorNeutralBackground3Selected: #605e5c;
+  --colorNeutralBackground4: #c8c6c4;
+  --colorNeutralBackground4Hover: #a19f9d;
+  --colorNeutralBackground4Pressed: #605e5c;
+  --colorNeutralBackground4Selected: #3b3a39;
+  --colorNeutralBackground5: #a19f9d;
+  --colorNeutralBackground5Hover: #605e5c;
+  --colorNeutralBackground5Pressed: #3b3a39;
+  --colorNeutralBackground5Selected: #201f1e;
+  --colorNeutralBackground6: #605e5c;
+  --colorNeutralBackgroundAlpha: #ffffffcc;
+  --colorNeutralBackgroundAlpha2: #f3f2f1cc;
+
+  /* === Color Palette Tokens (examples, add all as needed) === */
+  --colorPaletteNavyBackground2: #001f3f;
+  --colorPaletteNavyBorderActive: #001a35;
+  --colorPaletteNavyForeground2: #003366;
+  --colorPaletteBerryBackground1: #f5e1f7;
+  --colorPaletteBerryBackground2: #e1bee7;
+  --colorPaletteBerryBackground3: #ce93d8;
+  --colorPaletteBerryBorder1: #ba68c8;
+  --colorPaletteBerryBorder2: #ab47bc;
+  --colorPaletteBerryBorderActive: #8e24aa;
+  --colorPaletteBerryForeground1: #7b1fa2;
+  --colorPaletteBerryForeground2: #6a1b9a;
+  --colorPaletteBerryForeground3: #4a148c;
+  --colorPaletteBlueBackground2: #e3f2fd;
+  --colorPaletteBlueBorderActive: #1976d2;
+  --colorPaletteBlueForeground2: #1565c0;
+  --colorPaletteBrassBackground2: #fff8e1;
+  --colorPaletteBrassBorderActive: #ffd54f;
+  --colorPaletteBrassForeground2: #ffb300;
+  --colorPaletteBrownBackground2: #d7ccc8;
+  --colorPaletteBrownBorderActive: #a1887f;
+  --colorPaletteBrownForeground2: #6d4c41;
+  --colorPaletteCornflowerBackground2: #e3eafc;
+  --colorPaletteCornflowerBorderActive: #5c6bc0;
+  /* ...add all other color palette tokens as needed... */
+
+  /* === Typography Tokens === */
+  --fontFamilyBase: 'Segoe UI', Arial, sans-serif;
+  --fontFamilyMonospace: 'Consolas', 'Courier New', monospace;
+  --fontFamilyNumeric: 'Segoe UI', Arial, sans-serif;
+  --fontSizeBase100: 12px;
+  --fontSizeBase200: 14px;
+  --fontSizeBase300: 16px;
+  --fontSizeBase400: 18px;
+  --fontSizeBase500: 20px;
+  --fontSizeBase600: 24px;
+  --fontSizeHero700: 32px;
+  --fontSizeHero800: 40px;
+  --fontSizeHero900: 56px;
+  --fontSizeHero1000: 68px;
+  --fontWeightBold: 700;
+  --fontWeightMedium: 500;
+  --fontWeightRegular: 400;
+  --fontWeightSemibold: 600;
+
+  /* === Border Radius Tokens === */
+  --borderRadiusNone: 0;
+  --borderRadiusSmall: 2px;
+  --borderRadiusMedium: 4px;
+  --borderRadiusLarge: 8px;
+  --borderRadiusXLarge: 16px;
+  --borderRadiusCircular: 9999px;
+
+  /* === Duration Tokens === */
+  --durationUltraFast: 50ms;
+  --durationFaster: 100ms;
+  --durationFast: 150ms;
+  --durationGentle: 200ms;
+  --durationNormal: 250ms;
+  --durationSlow: 300ms;
+  --durationSlower: 400ms;
+  --durationUltraSlow: 500ms;
+
+  /* === Slider Component Tokens (examples) === */
+  --activeThumbColor: #0078d4;
+  --activeThumbHeight: 16px;
+  --activeThumbWidth: 16px;
+  --disabledRailColor: #e1dfdd;
+  --disabledThumbColor: #c8c6c4;
+  --disabledTrackColor: #f3f2f1;
+  --height: 4px;
+  --length: 100px;
+  --railColor: #e1dfdd;
+  --railHeight: 2px;
+  --thumbBorderPadding: 2px;
+  --thumbColor: #0078d4;
+  --thumbHeight: 16px;
+  --thumbWidth: 16px;
+  --trackColor: #0078d4;
+
+  /* ...add more tokens as needed from Fluent UI documentation... */
+} 

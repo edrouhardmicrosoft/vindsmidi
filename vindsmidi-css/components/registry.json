@@ -1,0 +1,58 @@
+{
+  "components": [
+    {
+      "name": "button",
+      "description": "Button component with various styles and states",
+      "files": ["button.tsx", "variants.ts"],
+      "dependencies": []
+    },
+    {
+      "name": "text",
+      "description": "Typography component with different text styles",
+      "files": ["text.tsx", "variants.ts"],
+      "dependencies": []
+    },
+    {
+      "name": "card",
+      "description": "Card component for grouping related content",
+      "files": ["card.tsx", "variants.ts"],
+      "dependencies": []
+    },
+    {
+      "name": "checkbox",
+      "description": "Checkbox component for selecting options",
+      "files": ["checkbox.tsx", "variants.ts"],
+      "dependencies": ["@fluentui/react-icons"]
+    },
+    {
+      "name": "radio",
+      "description": "Radio button component for selecting one option from a group",
+      "files": ["radio.tsx", "variants.ts"],
+      "dependencies": []
+    },
+    {
+      "name": "switch",
+      "description": "Switch component for toggling between two states",
+      "files": ["switch.tsx", "variants.ts"],
+      "dependencies": []
+    },
+    {
+      "name": "input",
+      "description": "Input component for collecting user input",
+      "files": ["input.tsx", "variants.ts"],
+      "dependencies": []
+    },
+    {
+      "name": "select",
+      "description": "Select component for choosing from a list of options",
+      "files": ["select.tsx", "variants.ts"],
+      "dependencies": ["@fluentui/react-icons"]
+    },
+    {
+      "name": "tabs",
+      "description": "Tabs component for tabbed navigation and content display",
+      "files": ["tabs.tsx", "variants.ts"],
+      "dependencies": ["@fluentui/react-components"]
+    }
+  ]
+} 
