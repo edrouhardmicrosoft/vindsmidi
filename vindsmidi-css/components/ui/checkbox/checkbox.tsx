@@ -83,6 +83,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
+    // Remove children from props if present
+    const { children, ...rest } = props as any
     // Generate a unique ID if none provided
     const uniqueId = React.useId()
     const checkboxId = id || uniqueId
@@ -123,12 +125,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           disabled={disabled}
           onChange={handleChange}
           {...checkboxStateAttributes}
-          {...props}
+          {...rest}
           aria-checked={indeterminate ? 'mixed' : checked}
-        >
-          {(checked || indeterminate) && icon}
-        </FluentCheckbox>
-
+        />
         {label && (
           <label htmlFor={checkboxId} className={labelClasses}>
             {label}

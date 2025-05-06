@@ -1,9 +1,10 @@
-import type { ComponentProps as FluentComponentProps } from '@fluentui/react-components';
+import type { ComponentProps as FluentComponentProps } from '@fluentui/react-components'
+import type React from 'react'
 
 /**
  * Standard size options for components
  */
-export type Size = 'sm' | 'default' | 'md' | 'lg' | 'xl';
+export type Size = 'sm' | 'default' | 'md' | 'lg' | 'xl'
 
 /**
  * Standard Fluent UI-based color variants
@@ -18,7 +19,7 @@ export type ColorVariant =
   | 'success'
   | 'warning'
   | 'error'
-  | 'info';
+  | 'info'
 
 /**
  * Interface for components with standard sizing
@@ -27,7 +28,7 @@ export interface SizeProps {
   /**
    * The size of the component
    */
-  size?: Size;
+  size?: Size
 }
 
 /**
@@ -37,7 +38,7 @@ export interface DisableableProps {
   /**
    * Whether the component is disabled
    */
-  disabled?: boolean;
+  disabled?: boolean
 }
 
 /**
@@ -47,7 +48,7 @@ export interface VariantProps {
   /**
    * The visual style of the component
    */
-  variant?: ColorVariant;
+  variant?: ColorVariant
 }
 
 /**
@@ -57,39 +58,42 @@ export interface AriaProps {
   /**
    * ID for aria-controls
    */
-  'aria-controls'?: string;
-  
+  'aria-controls'?: string
+
   /**
    * Expanded state for expandable components
    */
-  'aria-expanded'?: boolean;
-  
+  'aria-expanded'?: boolean
+
   /**
    * Pressed state for toggle components
    */
-  'aria-pressed'?: boolean;
-  
+  'aria-pressed'?: boolean
+
   /**
    * Selected state
    */
-  'aria-selected'?: boolean;
-  
+  'aria-selected'?: boolean
+
   /**
    * Label for screen readers
    */
-  'aria-label'?: string;
-  
+  'aria-label'?: string
+
   /**
    * Reference to element with additional description
    */
-  'aria-describedby'?: string;
+  'aria-describedby'?: string
 }
 
 /**
- * Type for mapping Fluent UI component props to our styled component props
+ * Type for mapping native element props to our styled component props
  */
-export type FluentExtendedProps<TComponentName extends string, TExtraProps = {}> =
-  FluentComponentProps<TComponentName> & TExtraProps;
+export type FluentExtendedProps<TElement extends keyof JSX.IntrinsicElements, TExtraProps = {}> = Omit<
+  React.ComponentPropsWithoutRef<TElement>,
+  'children'
+> &
+  TExtraProps
 
 /**
  * Common framework configuration type for multi-framework support
@@ -98,10 +102,10 @@ export interface FrameworkConfig {
   /**
    * The target framework for component implementation
    */
-  framework: 'react' | 'vue' | 'svelte' | 'web-components' | 'solid';
-  
+  framework: 'react' | 'vue' | 'svelte' | 'web-components' | 'solid'
+
   /**
    * Additional framework-specific options
    */
-  options?: Record<string, unknown>;
+  options?: Record<string, unknown>
 }

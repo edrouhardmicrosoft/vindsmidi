@@ -70,6 +70,8 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
     },
     ref
   ) => {
+    // Remove children from props if present
+    const { children, ...rest } = props as any
     // Generate a unique ID if none provided
     const uniqueId = React.useId()
     const switchId = id || uniqueId
@@ -103,11 +105,8 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
           onChange={handleChange}
           className={switchClasses}
           {...switchStateAttributes}
-          {...props}
-        >
-          <span className={thumbClasses} data-checked={checked ? '' : undefined} />
-        </FluentSwitch>
-
+          {...rest}
+        />
         {label && (
           <label htmlFor={switchId} className={labelClasses}>
             {label}

@@ -1,7 +1,165 @@
 @import "../fluent-ui-tokens.css";
 @import "tailwindcss";
 
-@theme {
+:root {
+  /* === Fluent UI Token Mappings (Full) === */
+  /* Color Tokens */
+  --fluent-color-background-overlay: var(--colorBackgroundOverlay);
+  --fluent-color-brand-background: var(--colorBrandBackground);
+  --fluent-color-brand-background-2: var(--colorBrandBackground2);
+  --fluent-color-brand-background-2-hover: var(--colorBrandBackground2Hover);
+  --fluent-color-brand-background-2-pressed: var(--colorBrandBackground2Pressed);
+  --fluent-color-brand-background-3-static: var(--colorBrandBackground3Static);
+  --fluent-color-brand-background-4-static: var(--colorBrandBackground4Static);
+  --fluent-color-brand-background-hover: var(--colorBrandBackgroundHover);
+  --fluent-color-brand-background-inverted: var(--colorBrandBackgroundInverted);
+  --fluent-color-brand-background-inverted-hover: var(--colorBrandBackgroundInvertedHover);
+  --fluent-color-brand-background-inverted-pressed: var(--colorBrandBackgroundInvertedPressed);
+  --fluent-color-brand-background-inverted-selected: var(--colorBrandBackgroundInvertedSelected);
+  --fluent-color-brand-background-pressed: var(--colorBrandBackgroundPressed);
+  --fluent-color-brand-background-selected: var(--colorBrandBackgroundSelected);
+  --fluent-color-brand-background-static: var(--colorBrandBackgroundStatic);
+  --fluent-color-brand-foreground-1: var(--colorBrandForeground1);
+  --fluent-color-brand-foreground-2: var(--colorBrandForeground2);
+  --fluent-color-brand-foreground-2-hover: var(--colorBrandForeground2Hover);
+  --fluent-color-brand-foreground-2-pressed: var(--colorBrandForeground2Pressed);
+  --fluent-color-brand-foreground-inverted: var(--colorBrandForegroundInverted);
+  --fluent-color-brand-foreground-inverted-hover: var(--colorBrandForegroundInvertedHover);
+  --fluent-color-brand-foreground-inverted-pressed: var(--colorBrandForegroundInvertedPressed);
+  --fluent-color-brand-foreground-link: var(--colorBrandForegroundLink);
+  --fluent-color-brand-foreground-link-hover: var(--colorBrandForegroundLinkHover);
+  --fluent-color-brand-foreground-link-pressed: var(--colorBrandForegroundLinkPressed);
+  --fluent-color-brand-foreground-link-selected: var(--colorBrandForegroundLinkSelected);
+  --fluent-color-brand-foreground-on-light: var(--colorBrandForegroundOnLight);
+  --fluent-color-brand-foreground-on-light-hover: var(--colorBrandForegroundOnLightHover);
+  --fluent-color-brand-foreground-on-light-pressed: var(--colorBrandForegroundOnLightPressed);
+  --fluent-color-brand-foreground-on-light-selected: var(--colorBrandForegroundOnLightSelected);
+  --fluent-color-brand-shadow-ambient: var(--colorBrandShadowAmbient);
+  --fluent-color-brand-shadow-key: var(--colorBrandShadowKey);
+  --fluent-color-brand-stroke-1: var(--colorBrandStroke1);
+  --fluent-color-brand-stroke-2: var(--colorBrandStroke2);
+  --fluent-color-brand-stroke-2-contrast: var(--colorBrandStroke2Contrast);
+  --fluent-color-brand-stroke-2-hover: var(--colorBrandStroke2Hover);
+  --fluent-color-brand-stroke-2-pressed: var(--colorBrandStroke2Pressed);
+  --fluent-color-compound-brand-background: var(--colorCompoundBrandBackground);
+  --fluent-color-compound-brand-background-hover: var(--colorCompoundBrandBackgroundHover);
+  --fluent-color-compound-brand-background-pressed: var(--colorCompoundBrandBackgroundPressed);
+  --fluent-color-compound-brand-foreground-1: var(--colorCompoundBrandForeground1);
+  --fluent-color-compound-brand-foreground-1-hover: var(--colorCompoundBrandForeground1Hover);
+  --fluent-color-compound-brand-foreground-1-pressed: var(--colorCompoundBrandForeground1Pressed);
+  --fluent-color-compound-brand-stroke: var(--colorCompoundBrandStroke);
+  --fluent-color-compound-brand-stroke-hover: var(--colorCompoundBrandStrokeHover);
+  --fluent-color-compound-brand-stroke-pressed: var(--colorCompoundBrandStrokePressed);
+  --fluent-color-neutral-background-1: var(--colorNeutralBackground1);
+  --fluent-color-neutral-background-1-hover: var(--colorNeutralBackground1Hover);
+  --fluent-color-neutral-background-1-pressed: var(--colorNeutralBackground1Pressed);
+  --fluent-color-neutral-background-1-selected: var(--colorNeutralBackground1Selected);
+  --fluent-color-neutral-background-2: var(--colorNeutralBackground2);
+  --fluent-color-neutral-background-2-hover: var(--colorNeutralBackground2Hover);
+  --fluent-color-neutral-background-2-pressed: var(--colorNeutralBackground2Pressed);
+  --fluent-color-neutral-background-2-selected: var(--colorNeutralBackground2Selected);
+  --fluent-color-neutral-background-3: var(--colorNeutralBackground3);
+  --fluent-color-neutral-background-3-hover: var(--colorNeutralBackground3Hover);
+  --fluent-color-neutral-background-3-pressed: var(--colorNeutralBackground3Pressed);
+  --fluent-color-neutral-background-3-selected: var(--colorNeutralBackground3Selected);
+  --fluent-color-neutral-background-4: var(--colorNeutralBackground4);
+  --fluent-color-neutral-background-4-hover: var(--colorNeutralBackground4Hover);
+  --fluent-color-neutral-background-4-pressed: var(--colorNeutralBackground4Pressed);
+  --fluent-color-neutral-background-4-selected: var(--colorNeutralBackground4Selected);
+  --fluent-color-neutral-background-5: var(--colorNeutralBackground5);
+  --fluent-color-neutral-background-5-hover: var(--colorNeutralBackground5Hover);
+  --fluent-color-neutral-background-5-pressed: var(--colorNeutralBackground5Pressed);
+  --fluent-color-neutral-background-5-selected: var(--colorNeutralBackground5Selected);
+  --fluent-color-neutral-background-6: var(--colorNeutralBackground6);
+  --fluent-color-neutral-background-alpha: var(--colorNeutralBackgroundAlpha);
+  --fluent-color-neutral-background-alpha-2: var(--colorNeutralBackgroundAlpha2);
+  --fluent-color-neutral-stroke-1: var(--colorNeutralStroke1);
+  --fluent-color-neutral-foreground-1: var(--colorNeutralForeground1);
+
+  /* Color Palette Tokens (examples) */
+  --fluent-color-palette-navy-background-2: var(--colorPaletteNavyBackground2);
+  --fluent-color-palette-navy-border-active: var(--colorPaletteNavyBorderActive);
+  --fluent-color-palette-navy-foreground-2: var(--colorPaletteNavyForeground2);
+  --fluent-color-palette-berry-background-1: var(--colorPaletteBerryBackground1);
+  --fluent-color-palette-berry-background-2: var(--colorPaletteBerryBackground2);
+  --fluent-color-palette-berry-background-3: var(--colorPaletteBerryBackground3);
+  --fluent-color-palette-berry-border-1: var(--colorPaletteBerryBorder1);
+  --fluent-color-palette-berry-border-2: var(--colorPaletteBerryBorder2);
+  --fluent-color-palette-berry-border-active: var(--colorPaletteBerryBorderActive);
+  --fluent-color-palette-berry-foreground-1: var(--colorPaletteBerryForeground1);
+  --fluent-color-palette-berry-foreground-2: var(--colorPaletteBerryForeground2);
+  --fluent-color-palette-berry-foreground-3: var(--colorPaletteBerryForeground3);
+  --fluent-color-palette-blue-background-2: var(--colorPaletteBlueBackground2);
+  --fluent-color-palette-blue-border-active: var(--colorPaletteBlueBorderActive);
+  --fluent-color-palette-blue-foreground-2: var(--colorPaletteBlueForeground2);
+  --fluent-color-palette-brass-background-2: var(--colorPaletteBrassBackground2);
+  --fluent-color-palette-brass-border-active: var(--colorPaletteBrassBorderActive);
+  --fluent-color-palette-brass-foreground-2: var(--colorPaletteBrassForeground2);
+  --fluent-color-palette-brown-background-2: var(--colorPaletteBrownBackground2);
+  --fluent-color-palette-brown-border-active: var(--colorPaletteBrownBorderActive);
+  --fluent-color-palette-brown-foreground-2: var(--colorPaletteBrownForeground2);
+  --fluent-color-palette-cornflower-background-2: var(--colorPaletteCornflowerBackground2);
+  --fluent-color-palette-cornflower-border-active: var(--colorPaletteCornflowerBorderActive);
+
+  /* Typography Tokens */
+  --fluent-font-sans: var(--fontFamilyBase);
+  --fluent-font-mono: var(--fontFamilyMonospace);
+  --fluent-font-numeric: var(--fontFamilyNumeric);
+  --fluent-font-size-xs: var(--fontSizeBase100);
+  --fluent-font-size-sm: var(--fontSizeBase200);
+  --fluent-font-size-base: var(--fontSizeBase300);
+  --fluent-font-size-lg: var(--fontSizeBase400);
+  --fluent-font-size-xl: var(--fontSizeBase500);
+  --fluent-font-size-2xl: var(--fontSizeBase600);
+  --fluent-font-size-3xl: var(--fontSizeHero700);
+  --fluent-font-size-4xl: var(--fontSizeHero800);
+  --fluent-font-size-5xl: var(--fontSizeHero900);
+  --fluent-font-size-6xl: var(--fontSizeHero1000);
+  --fluent-font-weight-normal: var(--fontWeightRegular);
+  --fluent-font-weight-medium: var(--fontWeightMedium);
+  --fluent-font-weight-semibold: var(--fontWeightSemibold);
+  --fluent-font-weight-bold: var(--fontWeightBold);
+
+  /* Border Radius Tokens */
+  --fluent-radius-none: var(--borderRadiusNone);
+  --fluent-radius-sm: var(--borderRadiusSmall);
+  --fluent-radius: var(--borderRadiusMedium);
+  --fluent-radius-md: var(--borderRadiusMedium);
+  --fluent-radius-lg: var(--borderRadiusLarge);
+  --fluent-radius-xl: var(--borderRadiusXLarge);
+  --fluent-radius-full: var(--borderRadiusCircular);
+
+  /* Duration Tokens */
+  --fluent-duration-ultra-fast: var(--durationUltraFast);
+  --fluent-duration-faster: var(--durationFaster);
+  --fluent-duration-fast: var(--durationFast);
+  --fluent-duration-gentle: var(--durationGentle);
+  --fluent-duration-normal: var(--durationNormal);
+  --fluent-duration-slow: var(--durationSlow);
+  --fluent-duration-slower: var(--durationSlower);
+  --fluent-duration-ultra-slow: var(--durationUltraSlow);
+
+  /* Slider Component Tokens */
+  --fluent-slider-active-thumb-color: var(--activeThumbColor);
+  --fluent-slider-active-thumb-height: var(--activeThumbHeight);
+  --fluent-slider-active-thumb-width: var(--activeThumbWidth);
+  --fluent-slider-disabled-rail-color: var(--disabledRailColor);
+  --fluent-slider-disabled-thumb-color: var(--disabledThumbColor);
+  --fluent-slider-disabled-track-color: var(--disabledTrackColor);
+  --fluent-slider-height: var(--height);
+  --fluent-slider-length: var(--length);
+  --fluent-slider-rail-color: var(--railColor);
+  --fluent-slider-rail-height: var(--railHeight);
+  --fluent-slider-thumb-border-padding: var(--thumbBorderPadding);
+  --fluent-slider-thumb-color: var(--thumbColor);
+  --fluent-slider-thumb-height: var(--thumbHeight);
+  --fluent-slider-thumb-width: var(--thumbWidth);
+  --fluent-slider-track-color: var(--trackColor);
+
+  /* Status Colors */
+  --fluent-status-red: var(--colorPaletteRedForeground2);
+  --fluent-status-green: var(--colorPaletteGreenForeground2);
+
   /* Tailwind blue mapped to Fluent UI blue palette */
   --color-blue-50:  var(--colorPaletteBlueBackground2, #e3f2fd);      /* lightest */
   --color-blue-100: var(--colorPaletteBlueBackground2, #e3f2fd);

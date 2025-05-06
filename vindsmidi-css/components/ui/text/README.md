@@ -1,23 +1,48 @@
 # Text (Typography)
 
-A typography component that wraps the Fluent UI Text component with our custom Tailwind CSS styling, providing a consistent typographic system.
+A typography component that wraps the Fluent UI Text component with vindsmidi-css Tailwind styling and tokens.
 
 ## Usage
 
 ```tsx
-import { Text } from "vindsmidi-ui/components/ui/text"
+import { Text } from 'vindsmidi-css/components/ui';
 
-export default function Example() {
-  return (
-    <div>
-      <Text variant="titleLarge">Main Heading</Text>
-      <Text variant="subtitle">Subtitle</Text>
-      <Text variant="body">This is a paragraph of text that demonstrates the body text style.</Text>
-      <Text variant="caption">Caption text for smaller, less important information</Text>
-    </div>
-  )
-}
+<Text variant="titleLarge">Main Heading</Text>
+<Text variant="subtitle">Subtitle</Text>
+<Text variant="body">Body text</Text>
+<Text variant="caption">Caption text</Text>
 ```
+
+## Variants
+
+- `body`, `bodySmall`, `bodyLarge`, `caption`, `subtitle`, `title`, `titleLarge`, `display`, `largeDisplay`, `heroDisplay`
+
+## Weights
+
+- `regular`, `medium`, `semibold`, `bold`
+
+## Alignment
+
+- `left`, `center`, `right`
+
+## Truncation
+
+```tsx
+<Text truncate>This is a long text that will be truncated</Text>
+```
+
+## Customizing with Variants
+
+```tsx
+import { textVariants } from 'vindsmidi-css/components/ui';
+
+const customClass = textVariants({ variant: 'title', weight: 'bold' });
+```
+
+## Accessibility
+
+- Semantic HTML elements based on variant
+- WCAG 2.1 compliant
 
 ## Features
 
@@ -27,7 +52,6 @@ export default function Example() {
 - Automatic semantic HTML elements based on variant
 - Support for different text alignments and weights
 - Truncation support for overflow handling
-- WCAG 2.1 compliant
 
 ## Accessibility
 
@@ -60,22 +84,6 @@ import { Text } from "vindsmidi-ui/components/ui/text"
 | `align` | `"left" \| "center" \| "right"` | `"left"` | The text alignment |
 | `truncate` | `boolean` | `false` | Whether the text should truncate with ellipsis if it overflows |
 | `as` | `React.ElementType` | Based on variant | The HTML element to render |
-
-## Variants
-
-### Heading Variants
-
-- **titleLarge**: Main heading (renders as `h1`)
-- **title**: Secondary heading (renders as `h2`)
-- **subtitle**: Tertiary heading (renders as `h3`)
-- **display**, **largeDisplay**, **heroDisplay**: Large display headings (renders as `h1`)
-
-### Body Variants
-
-- **body**: Standard paragraph text (renders as `p`)
-- **bodySmall**: Smaller body text (renders as `p`)
-- **bodyLarge**: Larger body text (renders as `p`)
-- **caption**: Small caption text (renders as `span`)
 
 ## Examples
 

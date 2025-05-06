@@ -1,27 +1,49 @@
 # Button
 
-A button component that wraps the Fluent UI Button with our custom Tailwind CSS styling.
+A button component that wraps the Fluent UI Button with vindsmidi-css Tailwind styling and design tokens.
 
 ## Usage
 
 ```tsx
-import { Button } from "vindsmidi-ui/components/ui/button"
+import { Button } from 'vindsmidi-css/components/ui';
 
-export default function Example() {
-  return (
-    <Button variant="default" size="default">
-      Click me
-    </Button>
-  )
-}
+<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>
 ```
 
-## Features
+## Variants
 
-- Built on Fluent UI Button component for accessibility
-- Styled with Tailwind CSS using Fluent UI tokens
-- Multiple variants and sizes
-- Fully accessible (keyboard, screen reader support)
+- `primary` (default): Brand background, white text
+- `secondary`: Neutral background, brand text
+- `outline`: Transparent background, brand border
+- `ghost`: Transparent, minimal
+- `link`: Looks like a hyperlink
+
+## Sizes
+
+- `sm`, `default`, `lg`, `icon`
+
+## Disabled State
+
+```tsx
+<Button disabled>Disabled</Button>
+```
+
+## Customizing with Variants
+
+```tsx
+import { buttonVariants } from 'vindsmidi-css/components/ui';
+
+const customClass = buttonVariants({ variant: 'primary', size: 'lg' });
+```
+
+## Accessibility
+
+- Built on Fluent UI Button for accessibility
+- Keyboard and screen reader support
 - WCAG 2.1 compliant
 
 ## Framework Support
@@ -106,28 +128,6 @@ customElements.define('vindsmidi-button', VindsmidiButton);
 | `variant` | `"default" \| "secondary" \| "outline" \| "ghost" \| "link"` | `"default"` | The visual style of the button |
 | `size` | `"sm" \| "default" \| "lg" \| "icon"` | `"default"` | The size of the button |
 | `disabled` | `boolean` | `false` | Whether the button is disabled |
-
-## Variants
-
-### Default
-
-The standard primary button with brand background color.
-
-### Secondary
-
-A less prominent button style with neutral background.
-
-### Outline
-
-A button with a border and transparent background.
-
-### Ghost
-
-A minimal button that only shows background on hover.
-
-### Link
-
-A button that resembles a hyperlink with underline on hover.
 
 ## Examples
 

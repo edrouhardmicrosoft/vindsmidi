@@ -53,6 +53,33 @@ export interface InputProps
        * Optional id for the input element
        */
       id?: string
+
+      /**
+       * Controlled value for the input
+       */
+      value?: string
+
+      /**
+       * Default value for the input
+       */
+      defaultValue?: string
+
+      /**
+       * Type of the input
+       */
+      type?:
+        | 'number'
+        | 'search'
+        | 'time'
+        | 'text'
+        | 'password'
+        | 'email'
+        | 'tel'
+        | 'url'
+        | 'date'
+        | 'datetime-local'
+        | 'month'
+        | 'week'
     }
   > {}
 
@@ -61,29 +88,21 @@ export interface InputProps
  * with our custom Tailwind CSS styling
  */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      className,
-      variant = 'default',
-      size = 'default',
-      state,
-      disabled = false,
-      required = false,
-      label,
-      message,
-      onChange,
-      id,
-      ...props
-    },
-    ref
-  ) => {
+  ({ label, message, state, required = false, disabled = false, id, type = 'text', ...props }, ref) => {
+    // Remove children from props if present
+    const { children, ...rest } = props as any
+    console.log('Input props passed to FluentInput:', rest)
     // Generate a unique ID if none provided
     const uniqueId = React.useId()
     const inputId = id || uniqueId
+    const messageId = message ? `${inputId}-message` : undefined
+
+    // Determine aria-invalid based on error state
+    const isError = state === 'error'
+    const isSuccess = state === 'success'
 
     // Apply our Tailwind CSS variants
-    const inputClasses = cn(inputVariants({ variant, size, state }), className)
-
+    const inputClasses = inputVariants({ state })
     const wrapperClasses = inputWrapperVariants({ state })
     const labelClasses = inputLabelVariants({ state, required, disabled })
     const messageClasses = inputMessageVariants({ state })
@@ -93,26 +112,23 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label htmlFor={inputId} className={labelClasses}>
             {label}
+            {required && (
+              <span className="after:content-['*'] after:ml-0.5 after:text-[var(--colorPaletteRedForeground2)]" />
+            )}
           </label>
         )}
-
         <FluentInput
           ref={ref}
           id={inputId}
           className={inputClasses}
+          type={type}
           disabled={disabled}
-          required={required}
-          onChange={onChange}
-          aria-describedby={message ? `${inputId}-message` : undefined}
+          aria-required={required}
           aria-invalid={state === 'error'}
-          {...props}
+          aria-describedby={messageId}
+          {...Object.fromEntries(Object.entries(rest).filter(([k]) => k !== 'size'))}
         />
-
-        {message && (
-          <div id={`${inputId}-message`} className={messageClasses}>
-            {message}
-          </div>
-        )}
+        {message && <div className={messageClasses}>{message}</div>}
       </div>
     )
   }

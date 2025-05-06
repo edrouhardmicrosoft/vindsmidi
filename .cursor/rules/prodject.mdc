@@ -1,7 +1,7 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
 # Tailwind CSS v4+ Portable Library Project Rules
 
@@ -11,3 +11,16 @@ alwaysApply: false
 - If Tailwind content detection misses files (e.g., in `public/`), add `@source "../public";` to `src/main.css`.
 - `.gitignore` must exclude: `node_modules/`, `dist/`, logs, OS/editor files, `.env` files.
 - Keep `plan.md` up to date as steps are completed and best practices change.
+
+
+# Remember for anything tailwind.
+- Reference tailwindcss vite docs: https://tailwindcss.com/docs/installation/using-vite
+
+# Fluent UI + Tailwind (vindsmidi-css) Integration Rules
+
+- Never render children inside Fluent UI's Input, Checkbox, or Switch components. These are wrappers for native <input> and <button> elements and will throw if children are present.
+- Always destructure and remove 'children' from props before spreading into these components.
+- If custom icons or thumbs are needed, use Fluent UI's API or render them outside the component, not as children.
+- If you see the error "input is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`", check for children being rendered or passed to these components.
+- Use Omit<...,'children'> in your prop types to prevent children at the type level.
+- This pattern applies to all input-like components in the library.

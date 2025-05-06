@@ -1,37 +1,44 @@
 # Card
 
-A flexible card component built on Fluent UI Card with custom Tailwind CSS styling, providing a container for related content and actions.
+A card component for grouping related content, styled with vindsmidi-css Tailwind tokens.
 
 ## Usage
 
 ```tsx
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter
-} from "vindsmidi-ui/components/ui/card"
-import { Button } from "vindsmidi-ui/components/ui/button"
+import { Card } from 'vindsmidi-css/components/ui';
 
-export default function Example() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card description text</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Card content goes here.</p>
-      </CardContent>
-      <CardFooter>
-        <Button>Action</Button>
-      </CardFooter>
-    </Card>
-  )
-}
+<Card variant="default">Default Card</Card>
+<Card variant="filled">Filled Card</Card>
+<Card variant="outline">Outline Card</Card>
+<Card variant="subtle">Subtle Card</Card>
+<Card variant="branded">Branded Card</Card>
 ```
+
+## Variants
+
+- `default` (default): Neutral background, border
+- `filled`: Filled neutral background
+- `outline`: Transparent, border only
+- `subtle`: Subtle background
+- `branded`: Brand accent
+
+## Sizes
+
+- `sm`, `default`, `lg`
+
+## Customizing with Variants
+
+```tsx
+import { cardVariants } from 'vindsmidi-css/components/ui';
+
+const customClass = cardVariants({ variant: 'filled', size: 'lg' });
+```
+
+## Accessibility
+
+- Built on Fluent UI Card for accessibility
+- Keyboard and screen reader support
+- WCAG 2.1 compliant
 
 ## Features
 
@@ -100,28 +107,6 @@ Heading component for card titles with appropriate styling.
 ### CardDescription
 
 Paragraph component for card descriptions with appropriate styling.
-
-## Variants
-
-### Default
-
-Standard card with border and white background.
-
-### Filled
-
-Borderless card with a subtle background color.
-
-### Outline
-
-Transparent card with border.
-
-### Subtle
-
-Light background card with subtle hover effect.
-
-### Branded
-
-Card with brand color background and border.
 
 ## Examples
 

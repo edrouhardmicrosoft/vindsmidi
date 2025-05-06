@@ -51,7 +51,7 @@
   --colorCompoundBrandStroke: #0078d4;
   --colorCompoundBrandStrokeHover: #005a9e;
   --colorCompoundBrandStrokePressed: #004578;
-  --colorNeutralBackground1: #ffffff;
+  --colorNeutralBackground1: #fff;
   --colorNeutralBackground1Hover: #f3f2f1;
   --colorNeutralBackground1Pressed: #e1dfdd;
   --colorNeutralBackground1Selected: #c8c6c4;
@@ -74,6 +74,8 @@
   --colorNeutralBackground6: #605e5c;
   --colorNeutralBackgroundAlpha: #ffffffcc;
   --colorNeutralBackgroundAlpha2: #f3f2f1cc;
+  --colorNeutralStroke1: #e1dfdd;
+  --colorNeutralForeground1: #1b1a19;
 
   /* === Color Palette Tokens (examples, add all as needed) === */
   --colorPaletteNavyBackground2: #001f3f;
@@ -102,7 +104,7 @@
   /* ...add all other color palette tokens as needed... */
 
   /* === Typography Tokens === */
-  --fontFamilyBase: 'Segoe UI', Arial, sans-serif;
+  --fontFamilyBase: "Segoe UI", Arial, sans-serif;
   --fontFamilyMonospace: 'Consolas', 'Courier New', monospace;
   --fontFamilyNumeric: 'Segoe UI', Arial, sans-serif;
   --fontSizeBase100: 12px;
@@ -115,9 +117,9 @@
   --fontSizeHero800: 40px;
   --fontSizeHero900: 56px;
   --fontSizeHero1000: 68px;
-  --fontWeightBold: 700;
-  --fontWeightMedium: 500;
   --fontWeightRegular: 400;
+  --fontWeightMedium: 500;
+  --fontWeightBold: 700;
   --fontWeightSemibold: 600;
 
   /* === Border Radius Tokens === */
@@ -154,6 +156,10 @@
   --thumbHeight: 16px;
   --thumbWidth: 16px;
   --trackColor: #0078d4;
+
+  /* === Status Colors === */
+  --colorPaletteRedForeground2: #d13438;
+  --colorPaletteGreenForeground2: #107c10;
 
   /* ...add more tokens as needed from Fluent UI documentation... */
 } 
