@@ -41,3 +41,6 @@ This project is currently under development. Stay tuned for the initial release.
 ## License
 
 MIT 
+
+<!-- This is a note for the user regarding general debugging strategies. -->
+<!-- No direct code changes intended for this 'file' block. --> 

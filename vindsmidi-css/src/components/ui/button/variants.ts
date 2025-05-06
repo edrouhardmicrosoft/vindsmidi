@@ -10,6 +10,8 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
+        default:
+          'bg-[var(--fluent-color-brand-background)] text-white hover:bg-[var(--fluent-color-brand-background-hover)] active:bg-[var(--fluent-color-brand-background-pressed)]',
         primary:
           'bg-[var(--fluent-color-brand-background)] text-white hover:bg-[var(--fluent-color-brand-background-hover)] active:bg-[var(--fluent-color-brand-background-pressed)]',
         secondary:

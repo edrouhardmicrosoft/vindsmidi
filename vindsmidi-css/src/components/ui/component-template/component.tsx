@@ -1,25 +1,28 @@
-import * as React from 'react';
-import {
-  // Import the base Fluent UI component
-  SomeComponent as FluentComponent,
-  useSomeComponentStyles_unstable
-} from '@fluentui/react-components';
-import { cn } from '../utils';
-import { componentVariants } from './variants';
-import type { FluentExtendedProps } from '../types';
+import * as React from 'react'
+// import {
+//   SomeComponent as FluentComponent,
+//   useSomeComponentStyles_unstable
+// } from '@fluentui/react-components';
+import { cn } from '../utils'
+import { componentVariants } from './variants'
+import type { FluentExtendedProps } from '../types'
 
 // Define props with TypeScript, extending Fluent UI props
-export interface ComponentProps extends FluentExtendedProps<'div', {
-  /**
-   * The visual style of the component
-   */
-  variant?: 'default' | 'secondary' | 'outline' | 'ghost';
-  
-  /**
-   * The size of the component
-   */
-  size?: 'sm' | 'default' | 'lg';
-}> {}
+export interface ComponentProps
+  extends FluentExtendedProps<
+    'div',
+    {
+      /**
+       * The visual style of the component
+       */
+      variant?: 'default' | 'secondary' | 'outline' | 'ghost'
+
+      /**
+       * The size of the component
+       */
+      size?: 'sm' | 'default' | 'lg'
+    }
+  > {}
 
 /**
  * Component template - replace this with your component description
@@ -27,38 +30,23 @@ export interface ComponentProps extends FluentExtendedProps<'div', {
  * This wraps a Fluent UI component with our Tailwind CSS styling
  */
 export const Component = React.forwardRef<HTMLDivElement, ComponentProps>(
-  ({
-    className,
-    variant = 'default',
-    size = 'default',
-    children,
-    ...props
-  }, ref) => {
+  ({ className, variant = 'default', size = 'default', children, ...props }, ref) => {
     // 1. Set up any component-specific logic
-    
+
     // 2. Apply Tailwind CSS classes using our variant system
-    const tailwindClasses = cn(
-      componentVariants({ variant, size }),
-      className
-    );
-    
-    // 3. Apply additional props to Fluent UI component
+    const tailwindClasses = cn(componentVariants({ variant, size }), className)
+
+    // 3. Render a simple div for now
     return (
-      <FluentComponent
-        ref={ref}
-        // Apply the Tailwind classes to the Fluent UI component
-        className={tailwindClasses}
-        // Pass through remaining props
-        {...props}
-      >
+      <div ref={ref} className={tailwindClasses} {...props}>
         {children}
-      </FluentComponent>
-    );
+      </div>
+    )
   }
-);
+)
 
 // Set display name for debugging
-Component.displayName = 'Component';
+Component.displayName = 'Component'
 
 /**
  * Framework-agnostic implementation notes:

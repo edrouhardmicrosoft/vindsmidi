@@ -4,9 +4,9 @@
   "description": "A Fluent UI-based component library with a shadcn-like architecture",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i styles/src/main.css -o dist/tailwind.css --minify",
-    "watch": "tailwindcss -i styles/src/main.css -o dist/tailwind.css --watch",
-    "dev": "tailwindcss -i styles/src/main.css -o dist/tailwind.css --watch",
+    "build": "tailwindcss -i styles/main.css -o dist/tailwind.css --minify",
+    "watch": "tailwindcss -i styles/main.css -o dist/tailwind.css --watch",
+    "dev": "tailwindcss -i styles/main.css -o dist/tailwind.css --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

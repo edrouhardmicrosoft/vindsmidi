@@ -1,0 +1,43 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Fluent-Themed Tailwind Integration Guide
+
+## Goal
+Build UI components styled with Tailwind CSS, using Fluent UI design tokens for theming, but **do not rely on Fluent UI's visual components**. Optionally, use Fluent UI's logic/accessibility utilities.
+
+## Best Practices
+- Use [styles/main.css](mdc:styles/main.css) as the single source of global styles. It must:
+  - Import Tailwind layers (`@tailwind base;`, etc.)
+  - Import Fluent UI tokens via `@import './fluent-ui-tokens.css';`
+  - Expose all Fluent UI tokens as CSS variables at the `:root` level for use in Tailwind and custom CSS.
+- Do **not** expect Tailwind classes to style Fluent UI's visual components directly. Fluent UI manages its own DOM and styles, which are not Tailwind-compatible.
+- Build your own UI components using Tailwind classes, referencing Fluent UI tokens for color, spacing, and other design values.
+- Optionally, use Fluent UI's logic, hooks, or accessibility helpers for behavior, but render your own markup.
+- If you want to use Fluent UI tokens in Tailwind classes, extend Tailwind's theme in `tailwind.config.js` to map custom colors, spacing, etc. to the CSS variables defined in `main.css`.
+- Always import [styles/main.css](mdc:styles/main.css) in [.storybook/preview.ts](mdc:.storybook/preview.ts) to ensure global styles and tokens are available in Storybook.
+- For development, you do **not** need to run a build; Vite and Storybook handle live style updates. Restart the dev server after config or dependency changes.
+
+## Example: Fluent-Themed Tailwind Button
+```tsx
+// Button.tsx
+export function Button({ children, ...props }) {
+  return (
+    <button
+      className="bg-[var(--fluent-color-brand-background)] text-white rounded px-4 py-2 hover:bg-[var(--fluent-color-brand-background-hover)]"
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+## Summary Table
+| Approach                | Fluent UI Visuals | Tailwind Styling | Customization | Recommended For         |
+|-------------------------|:----------------:|:---------------:|:-------------:|------------------------|
+| Fluent UI only          | Yes              | No              | Low           | Out-of-the-box Fluent  |
+| Tailwind + Fluent tokens| No               | Yes             | High          | Custom Fluent look     |
+| Hybrid (wrappers)       | Partial          | Yes             | Medium        | Custom logic + look    |

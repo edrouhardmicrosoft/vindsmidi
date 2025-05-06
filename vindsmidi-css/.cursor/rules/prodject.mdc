@@ -3,16 +3,6 @@ description:
 globs: 
 alwaysApply: true
 ---
-# Tailwind CSS v4+ Portable Library Project Rules
-
-- Use CSS-first configuration: all theme, color, and breakpoint customizations go in `src/main.css` using `@theme` and CSS custom properties.
-- Build distributable CSS with: `tailwindcss -i src/main.css -o dist/tailwind.css --minify`.
-- Place test/demo HTML in `public/`, not `src/`.
-- If Tailwind content detection misses files (e.g., in `public/`), add `@source "../public";` to `src/main.css`.
-- `.gitignore` must exclude: `node_modules/`, `dist/`, logs, OS/editor files, `.env` files.
-- Keep `plan.md` up to date as steps are completed and best practices change.
-
-
 # Remember for anything tailwind.
 - Reference tailwindcss vite docs: https://tailwindcss.com/docs/installation/using-vite
 
@@ -31,3 +21,24 @@ alwaysApply: true
 - Only components in `src/components` should have stories; delete stories for non-existent or non-component files.
 - The `components` directory must reside inside `src/` to keep all source code under one root.
 - Follow best practices for clear, maintainable, and portable code.
+
+# Styles Directory and Token Management Rules
+
+- Only one canonical main.css should exist, located at styles/main.css. This file should import both Tailwind and the Fluent UI tokens, and expose all Fluent UI tokens as CSS variables (with --fluent-* prefixes) as well as Tailwind color mappings.
+- Only one canonical fluent-ui-tokens.css should exist, located at styles/fluent-ui-tokens.css. Remove any duplicates from the project root or elsewhere.
+- Do not use a styles/src/ directory unless there is a specific, documented build or organizational need. All source CSS should live directly in styles/.
+- Do not keep a src/main.css. All design token mappings and theme variables should be merged into styles/main.css.
+- If you need to expose all Fluent UI tokens globally, merge the full token set into styles/main.css. This supports a design-token-driven system and ensures all tokens are available for both Tailwind and Fluent UI theming.
+- Regularly audit the styles directory for duplicates or legacy files to avoid confusion and ensure maintainability.
+
+# Tailwind 4, Fluent UI, and Storybook Integration Lessons (2024-06)
+
+- Only one canonical `styles/main.css` should exist. It must import Tailwind layers and Fluent UI tokens (via `@import './fluent-ui-tokens.css';`).
+- All Fluent UI token mappings (e.g., `--fluent-*`) should be defined at the `:root` level in `styles/main.css` or imported from `fluent-ui-tokens.css`.
+- In Tailwind 4, a `tailwind.config.js` is optional. The default content scan is broad, but if you have non-standard file locations or want to customize Tailwind, add a config with explicit `content` paths.
+- Always import `styles/main.css` in `.storybook/preview.ts` to ensure global styles and tokens are available in all stories.
+- For development, you do **not** need to run `npm run build`; Vite and Storybook handle live style updates. Restart the dev server after config or dependency changes.
+- All stories with JSX/TSX must use the `.tsx` extension for Vite/Storybook compatibility.
+- Only components in `src/components` should have stories; colocate stories in `src/components/ui/{component}`.
+- Remove duplicate or legacy CSS files (e.g., `src/main.css`, `styles/src/main.css`).
+- If styles are missing, check that the CSS is loaded in the browser, Tailwind classes are present in the HTML, and there are no console errors.

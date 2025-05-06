@@ -1,7 +1,15 @@
-@import "../fluent-ui-tokens.css";
-@import "tailwindcss";
+@import './fluent-ui-tokens.css'; /* REVIEW: Should be at the top */
+
+@tailwind base; /* REVIEW: Correct order */
+@tailwind components;
+@tailwind utilities;
 
 :root {
+  /* REVIEW: Ensure all --fluent-* mappings are correct and use vars from fluent-ui-tokens.css */
+  /* --fluent-color-brand-background: var(--colorBrandBackground); */
+  
+  /* REVIEW: Ensure Tailwind color palette mappings are correct */
+  /* --color-blue-500: var(--colorPaletteBlueForeground2, #1565c0); */
   /* === Fluent UI Token Mappings (Full) === */
   /* Color Tokens */
   --fluent-color-background-overlay: var(--colorBackgroundOverlay);
@@ -261,36 +269,4 @@
   --radius-lg: var(--borderRadiusLarge);
   --radius-xl: var(--borderRadiusXLarge);
   --radius-full: var(--borderRadiusCircular);
-
-  /* Font families */
-  --font-sans: var(--fontFamilyBase);
-  --font-mono: var(--fontFamilyMonospace);
-
-  /* Font sizes */
-  --font-size-xs: var(--fontSizeBase100);
-  --font-size-sm: var(--fontSizeBase200);
-  --font-size-base: var(--fontSizeBase300);
-  --font-size-lg: var(--fontSizeBase400);
-  --font-size-xl: var(--fontSizeBase500);
-  --font-size-2xl: var(--fontSizeBase600);
-  --font-size-3xl: var(--fontSizeHero700);
-  --font-size-4xl: var(--fontSizeHero800);
-  --font-size-5xl: var(--fontSizeHero900);
-  --font-size-6xl: var(--fontSizeHero1000);
-
-  /* Font weights */
-  --font-weight-normal: var(--fontWeightRegular);
-  --font-weight-medium: var(--fontWeightMedium);
-  --font-weight-semibold: var(--fontWeightSemibold);
-  --font-weight-bold: var(--fontWeightBold);
-
-  /* Durations */
-  --duration-ultra-fast: var(--durationUltraFast);
-  --duration-faster: var(--durationFaster);
-  --duration-fast: var(--durationFast);
-  --duration-gentle: var(--durationGentle);
-  --duration-normal: var(--durationNormal);
-  --duration-slow: var(--durationSlow);
-  --duration-slower: var(--durationSlower);
-  --duration-ultra-slow: var(--durationUltraSlow);
 }
