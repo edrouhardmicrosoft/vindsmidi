@@ -24,3 +24,10 @@ alwaysApply: true
 - If you see the error "input is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`", check for children being rendered or passed to these components.
 - Use Omit<...,'children'> in your prop types to prevent children at the type level.
 - This pattern applies to all input-like components in the library.
+
+# Storybook and Component Structure Rules
+
+- All Storybook stories must be colocated with their respective components in `src/components/ui/{component}`.
+- Only components in `src/components` should have stories; delete stories for non-existent or non-component files.
+- The `components` directory must reside inside `src/` to keep all source code under one root.
+- Follow best practices for clear, maintainable, and portable code.
