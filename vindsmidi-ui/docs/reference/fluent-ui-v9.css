@@ -1,0 +1,621 @@
+/**
+ * Comprehensive Fluent UI v9 Tokens
+ * 
+ * This file attempts to catalog all available tokens in Fluent UI v9.
+ * Organized by category for easier mapping to Tailwind CSS.
+ */
+
+:root {
+  /* ===== COLOR TOKENS ===== */
+  
+  /* --- Brand Colors --- */
+  --colorBrandBackground: #0f6cbd;
+  --colorBrandBackground1: #0f6cbd;
+  --colorBrandBackground2: #115ea3;
+  --colorBrandBackground3: #0c3b5e;
+  --colorBrandBackgroundHover: #115ea3;
+  --colorBrandBackgroundPressed: #0e4775;
+  --colorBrandBackgroundSelected: #115ea3;
+  --colorBrandBackgroundStencil: rgba(15, 108, 189, 0.1);
+  --colorBrandBackgroundInverted: #ffffff;
+  --colorBrandBackgroundInvertedHover: #f5f5f5;
+  --colorBrandBackgroundInvertedPressed: #e0e0e0;
+  --colorBrandBackgroundInvertedSelected: #f5f5f5;
+  --colorBrandForeground1: #0f6cbd;
+  --colorBrandForeground2: #115ea3;
+  --colorBrandForegroundHover: #115ea3;
+  --colorBrandForegroundPressed: #0e4775;
+  --colorBrandForegroundSelected: #115ea3;
+  --colorBrandForegroundInverted: #ffffff;
+  --colorBrandForegroundInvertedHover: #f5f5f5;
+  --colorBrandForegroundInvertedPressed: #e0e0e0;
+  --colorBrandForegroundInvertedSelected: #f5f5f5;
+  --colorBrandForegroundOnLight: #0f6cbd;
+  --colorBrandForegroundOnLightHover: #115ea3;
+  --colorBrandForegroundOnLightPressed: #0e4775;
+  --colorBrandForegroundOnLightSelected: #115ea3;
+  --colorBrandStroke1: #0f6cbd;
+  --colorBrandStroke2: #115ea3;
+  --colorBrandStrokeHover: #115ea3;
+  --colorBrandStrokePressed: #0e4775;
+  --colorBrandStrokeSelected: #115ea3;
+  --colorCompoundBrandBackground: #0f6cbd;
+  --colorCompoundBrandBackgroundHover: #115ea3;
+  --colorCompoundBrandBackgroundPressed: #0e4775;
+  --colorCompoundBrandForeground1: #0f6cbd;
+  --colorCompoundBrandForeground1Hover: #115ea3;
+  --colorCompoundBrandForeground1Pressed: #0e4775;
+  --colorBrandShadowAmbient: rgba(0, 0, 0, 0.3);
+  --colorBrandShadowKey: rgba(0, 0, 0, 0.25);
+  
+  /* --- Neutral Colors --- */
+  --colorNeutralForeground1: #242424;
+  --colorNeutralForeground1Hover: #242424;
+  --colorNeutralForeground1Pressed: #242424;
+  --colorNeutralForeground1Selected: #242424;
+  --colorNeutralForeground2: #424242;
+  --colorNeutralForeground2Hover: #424242;
+  --colorNeutralForeground2Pressed: #424242;
+  --colorNeutralForeground2Selected: #424242;
+  --colorNeutralForeground2BrandHover: #0f6cbd;
+  --colorNeutralForeground2BrandPressed: #0e4775;
+  --colorNeutralForeground2BrandSelected: #0f6cbd;
+  --colorNeutralForeground3: #616161;
+  --colorNeutralForeground3Hover: #616161;
+  --colorNeutralForeground3Pressed: #616161;
+  --colorNeutralForeground3Selected: #616161;
+  --colorNeutralForeground3BrandHover: #0f6cbd;
+  --colorNeutralForeground3BrandPressed: #0e4775;
+  --colorNeutralForeground3BrandSelected: #0f6cbd;
+  --colorNeutralForeground4: #707070;
+  --colorNeutralForegroundDisabled: #bdbdbd;
+  --colorNeutralForegroundInverted: #ffffff;
+  --colorNeutralForegroundInvertedHover: #ffffff;
+  --colorNeutralForegroundInvertedPressed: #ffffff;
+  --colorNeutralForegroundInvertedSelected: #ffffff;
+  --colorNeutralForegroundInverted2: #f5f5f5;
+  --colorNeutralForegroundOnBrand: #ffffff;
+  --colorNeutralForegroundStaticInverted: #ffffff;
+  
+  --colorNeutralBackground1: #ffffff;
+  --colorNeutralBackground1Hover: #f5f5f5;
+  --colorNeutralBackground1Pressed: #e0e0e0;
+  --colorNeutralBackground1Selected: #f5f5f5;
+  --colorNeutralBackground2: #fafafa;
+  --colorNeutralBackground2Hover: #f0f0f0;
+  --colorNeutralBackground2Pressed: #e0e0e0;
+  --colorNeutralBackground2Selected: #f0f0f0;
+  --colorNeutralBackground3: #f5f5f5;
+  --colorNeutralBackground3Hover: #ebebeb;
+  --colorNeutralBackground3Pressed: #e0e0e0;
+  --colorNeutralBackground3Selected: #ebebeb;
+  --colorNeutralBackground4: #f0f0f0;
+  --colorNeutralBackground4Hover: #e5e5e5;
+  --colorNeutralBackground4Pressed: #d6d6d6;
+  --colorNeutralBackground4Selected: #e5e5e5;
+  --colorNeutralBackground5: #e5e5e5;
+  --colorNeutralBackground5Hover: #dbdbdb;
+  --colorNeutralBackground5Pressed: #c8c8c8;
+  --colorNeutralBackground5Selected: #dbdbdb;
+  --colorNeutralBackground6: #ffffff;
+  --colorNeutralBackgroundAlpha: rgba(255, 255, 255, 0.5);
+  --colorNeutralBackgroundAlpha2: rgba(255, 255, 255, 0.8);
+  --colorNeutralBackgroundDisabled: #f0f0f0;
+  --colorNeutralBackgroundInverted: #292929;
+  --colorNeutralBackgroundInvertedDisabled: #3d3d3d;
+  --colorNeutralBackgroundStatic: #3d3d3d;
+  --colorNeutralBackgroundStaticInverted: #ffffff;
+  
+  --colorNeutralStencil1: #e5e5e5;
+  --colorNeutralStencil2: #f0f0f0;
+  --colorNeutralStroke1: #d1d1d1;
+  --colorNeutralStroke1Hover: #c7c7c7;
+  --colorNeutralStroke1Pressed: #b3b3b3;
+  --colorNeutralStroke1Selected: #c7c7c7;
+  --colorNeutralStroke2: #e0e0e0;
+  --colorNeutralStroke3: #f0f0f0;
+  --colorNeutralStrokeAccessible: #616161;
+  --colorNeutralStrokeAccessibleHover: #575757;
+  --colorNeutralStrokeAccessiblePressed: #424242;
+  --colorNeutralStrokeAccessibleSelected: #575757;
+  --colorNeutralStrokeAlpha: rgba(0, 0, 0, 0.1);
+  --colorNeutralStrokeDisabled: #e0e0e0;
+  --colorNeutralStrokeInvertedDisabled: #424242;
+  --colorNeutralStrokeOnBrand: #ffffff;
+  --colorNeutralStrokeOnBrand2: rgba(255, 255, 255, 0.7);
+  --colorNeutralStrokeOnBrand2Hover: rgba(255, 255, 255, 0.8);
+  --colorNeutralStrokeOnBrand2Pressed: rgba(255, 255, 255, 0.9);
+  --colorNeutralStrokeOnBrand2Selected: rgba(255, 255, 255, 0.8);
+  
+  --colorNeutralShadowAmbient: rgba(0, 0, 0, 0.12);
+  --colorNeutralShadowKey: rgba(0, 0, 0, 0.14);
+  --colorNeutralShadowAmbientLighter: rgba(0, 0, 0, 0.06);
+  --colorNeutralShadowKeyLighter: rgba(0, 0, 0, 0.07);
+  --colorNeutralShadowAmbientDarker: rgba(0, 0, 0, 0.18);
+  --colorNeutralShadowKeyDarker: rgba(0, 0, 0, 0.21);
+  
+  /* --- Subtle Colors --- */
+  --colorSubtleBackground: #f5f5f5;
+  --colorSubtleBackgroundHover: #e0e0e0;
+  --colorSubtleBackgroundPressed: #d1d1d1;
+  --colorSubtleBackgroundSelected: #e0e0e0;
+  --colorSubtleBackgroundDisabled: #f5f5f5;
+  --colorSubtleBackgroundInverted: rgba(255, 255, 255, 0.1);
+  --colorSubtleBackgroundInvertedHover: rgba(255, 255, 255, 0.15);
+  --colorSubtleBackgroundInvertedPressed: rgba(255, 255, 255, 0.2);
+  --colorSubtleBackgroundInvertedSelected: rgba(255, 255, 255, 0.15);
+  
+  /* --- Status Colors --- */
+  --colorStatusDangerBackground1: #fdf3f4;
+  --colorStatusDangerBackground2: #fce8ea;
+  --colorStatusDangerBackground3: #fad4d7;
+  --colorStatusDangerForeground1: #d13438;
+  --colorStatusDangerForeground2: #bc2f32;
+  --colorStatusDangerForeground3: #a4292d;
+  --colorStatusDangerBorderActive: #d13438;
+  --colorStatusDangerBorder1: #f9c8cb;
+  --colorStatusDangerBorder2: #eeb4b8;
+  
+  --colorStatusSuccessBackground1: #f1faf1;
+  --colorStatusSuccessBackground2: #e6f6e6;
+  --colorStatusSuccessBackground3: #d0ecd0;
+  --colorStatusSuccessForeground1: #107c10;
+  --colorStatusSuccessForeground2: #0e700e;
+  --colorStatusSuccessForeground3: #0b610b;
+  --colorStatusSuccessBorderActive: #107c10;
+  --colorStatusSuccessBorder1: #c1e3c1;
+  --colorStatusSuccessBorder2: #abd6ab;
+  
+  --colorStatusWarningBackground1: #fff9f5;
+  --colorStatusWarningBackground2: #fff4ec;
+  --colorStatusWarningBackground3: #feeadb;
+  --colorStatusWarningForeground1: #d83b01;
+  --colorStatusWarningForeground2: #ca3901;
+  --colorStatusWarningForeground3: #bc3400;
+  --colorStatusWarningBorderActive: #d83b01;
+  --colorStatusWarningBorder1: #fee0cb;
+  --colorStatusWarningBorder2: #fad2b4;
+  
+  --colorStatusInfoBackground1: #f3f9fc;
+  --colorStatusInfoBackground2: #ebf5fa;
+  --colorStatusInfoBackground3: #daecf6;
+  --colorStatusInfoForeground1: #0078d4;
+  --colorStatusInfoForeground2: #006cbe;
+  --colorStatusInfoForeground3: #0061ab;
+  --colorStatusInfoBorderActive: #0078d4;
+  --colorStatusInfoBorder1: #cbe3f1;
+  --colorStatusInfoBorder2: #b4d5ea;
+  
+  /* --- Scrollbar Colors --- */
+  --colorScrollbarOverlay: rgba(0, 0, 0, 0.5);
+  --colorScrollbarOverlayHover: rgba(0, 0, 0, 0.7);
+  --colorScrollbarOverlayPressed: rgba(0, 0, 0, 0.9);
+  --colorScrollbarOverlaySelected: rgba(0, 0, 0, 0.7);
+  
+  /* --- Global Color Tokens --- */
+  --colorPaletteRedBackground1: #fdf6f6;
+  --colorPaletteRedBackground2: #f9ecec;
+  --colorPaletteRedBackground3: #f4d8d8;
+  --colorPaletteRedForeground1: #d13438;
+  --colorPaletteRedForeground2: #bc2f32;
+  --colorPaletteRedForeground3: #a4292d;
+  --colorPaletteRedBorderActive: #d13438;
+  --colorPaletteRedBorder1: #efcfcf;
+  --colorPaletteRedBorder2: #e5b4b4;
+  
+  --colorPaletteGreenBackground1: #f1faf1;
+  --colorPaletteGreenBackground2: #e6f6e6;
+  --colorPaletteGreenBackground3: #d0ecd0;
+  --colorPaletteGreenForeground1: #107c10;
+  --colorPaletteGreenForeground2: #0e700e;
+  --colorPaletteGreenForeground3: #0b610b;
+  --colorPaletteGreenBorderActive: #107c10;
+  --colorPaletteGreenBorder1: #c1e3c1;
+  --colorPaletteGreenBorder2: #abd6ab;
+  
+  --colorPaletteDarkOrangeBackground1: #fff6f3;
+  --colorPaletteDarkOrangeBackground2: #ffede8;
+  --colorPaletteDarkOrangeBackground3: #fddfd7;
+  --colorPaletteDarkOrangeForeground1: #da3b01;
+  --colorPaletteDarkOrangeForeground2: #c83501;
+  --colorPaletteDarkOrangeForeground3: #b62e00;
+  --colorPaletteDarkOrangeBorderActive: #da3b01;
+  --colorPaletteDarkOrangeBorder1: #fbd6cb;
+  --colorPaletteDarkOrangeBorder2: #f8c2b2;
+  
+  --colorPaletteYellowBackground1: #fffef5;
+  --colorPaletteYellowBackground2: #fffef0;
+  --colorPaletteYellowBackground3: #fefdd5;
+  --colorPaletteYellowForeground1: #fde300;
+  --colorPaletteYellowForeground2: #ebd500;
+  --colorPaletteYellowForeground3: #d9c500;
+  --colorPaletteYellowBorderActive: #fde300;
+  --colorPaletteYellowBorder1: #fbf8c4;
+  --colorPaletteYellowBorder2: #f9f4aa;
+  
+  --colorPaletteBerryBackground1: #fdf5fc;
+  --colorPaletteBerryBackground2: #fceff9;
+  --colorPaletteBerryBackground3: #f9dff2;
+  --colorPaletteBerryForeground1: #c239b3;
+  --colorPaletteBerryForeground2: #af33a1;
+  --colorPaletteBerryForeground3: #9c2d8f;
+  --colorPaletteBerryBorderActive: #c239b3;
+  --colorPaletteBerryBorder1: #f5d4ec;
+  --colorPaletteBerryBorder2: #efbce1;
+  
+  --colorPaletteLightGreenBackground1: #f2fbf2;
+  --colorPaletteLightGreenBackground2: #e7f8e7;
+  --colorPaletteLightGreenBackground3: #d0f0d0;
+  --colorPaletteLightGreenForeground1: #13a10e;
+  --colorPaletteLightGreenForeground2: #11910d;
+  --colorPaletteLightGreenForeground3: #0f800b;
+  --colorPaletteLightGreenBorderActive: #13a10e;
+  --colorPaletteLightGreenBorder1: #c1e8c1;
+  --colorPaletteLightGreenBorder2: #a9dfa9;
+  
+  --colorPaletteLightBlueBackground1: #f6f9fd;
+  --colorPaletteLightBlueBackground2: #eff5fc;
+  --colorPaletteLightBlueBackground3: #deebf8;
+  --colorPaletteLightBlueForeground1: #3b94d9;
+  --colorPaletteLightBlueForeground2: #3588d7;
+  --colorPaletteLightBlueForeground3: #2c78be;
+  --colorPaletteLightBlueBorderActive: #3b94d9;
+  --colorPaletteLightBlueBorder1: #d0e3f5;
+  --colorPaletteLightBlueBorder2: #b8d5f0;
+  
+  /* ===== TYPOGRAPHY TOKENS ===== */
+  
+  /* --- Font Family --- */
+  --fontFamilyBase: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  --fontFamilyMonospace: Consolas, monospace;
+  --fontFamilyNumeric: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  
+  /* --- Font Size --- */
+  --fontSizeBase100: 10px;
+  --fontSizeBase200: 12px;
+  --fontSizeBase300: 14px;
+  --fontSizeBase400: 16px;
+  --fontSizeBase500: 20px;
+  --fontSizeBase600: 24px;
+  --fontSizeHero700: 28px;
+  --fontSizeHero800: 32px;
+  --fontSizeHero900: 40px;
+  --fontSizeHero1000: 68px;
+  
+  /* --- Font Weight --- */
+  --fontWeightRegular: 400;
+  --fontWeightMedium: 500;
+  --fontWeightSemibold: 600;
+  --fontWeightBold: 700;
+  
+  /* --- Line Height --- */
+  --lineHeightBase100: 14px;
+  --lineHeightBase200: 16px;
+  --lineHeightBase300: 20px;
+  --lineHeightBase400: 22px;
+  --lineHeightBase500: 28px;
+  --lineHeightBase600: 32px;
+  --lineHeightHero700: 36px;
+  --lineHeightHero800: 40px;
+  --lineHeightHero900: 52px;
+  --lineHeightHero1000: 92px;
+  
+  /* --- Text Alignment --- */
+  --textAlignStart: left;
+  --textAlignCenter: center;
+  --textAlignEnd: right;
+  
+  /* --- Typography Presets --- */
+  --typographyBody1FontFamily: var(--fontFamilyBase);
+  --typographyBody1FontSize: var(--fontSizeBase300);
+  --typographyBody1FontWeight: var(--fontWeightRegular);
+  --typographyBody1LineHeight: var(--lineHeightBase300);
+  
+  --typographyBody1StrongFontFamily: var(--fontFamilyBase);
+  --typographyBody1StrongFontSize: var(--fontSizeBase300);
+  --typographyBody1StrongFontWeight: var(--fontWeightSemibold);
+  --typographyBody1StrongLineHeight: var(--lineHeightBase300);
+  
+  --typographyBody2FontFamily: var(--fontFamilyBase);
+  --typographyBody2FontSize: var(--fontSizeBase200);
+  --typographyBody2FontWeight: var(--fontWeightRegular);
+  --typographyBody2LineHeight: var(--lineHeightBase200);
+  
+  --typographyCaption1FontFamily: var(--fontFamilyBase);
+  --typographyCaption1FontSize: var(--fontSizeBase200);
+  --typographyCaption1FontWeight: var(--fontWeightRegular);
+  --typographyCaption1LineHeight: var(--lineHeightBase200);
+  
+  --typographyCaption2FontFamily: var(--fontFamilyBase);
+  --typographyCaption2FontSize: var(--fontSizeBase100);
+  --typographyCaption2FontWeight: var(--fontWeightRegular);
+  --typographyCaption2LineHeight: var(--lineHeightBase100);
+  
+  --typographySubtitle1FontFamily: var(--fontFamilyBase);
+  --typographySubtitle1FontSize: var(--fontSizeBase500);
+  --typographySubtitle1FontWeight: var(--fontWeightSemibold);
+  --typographySubtitle1LineHeight: var(--lineHeightBase500);
+  
+  --typographySubtitle2FontFamily: var(--fontFamilyBase);
+  --typographySubtitle2FontSize: var(--fontSizeBase400);
+  --typographySubtitle2FontWeight: var(--fontWeightSemibold);
+  --typographySubtitle2LineHeight: var(--lineHeightBase400);
+  
+  --typographyTitle1FontFamily: var(--fontFamilyBase);
+  --typographyTitle1FontSize: var(--fontSizeBase700);
+  --typographyTitle1FontWeight: var(--fontWeightSemibold);
+  --typographyTitle1LineHeight: var(--lineHeightBase700);
+  
+  --typographyTitle2FontFamily: var(--fontFamilyBase);
+  --typographyTitle2FontSize: var(--fontSizeBase600);
+  --typographyTitle2FontWeight: var(--fontWeightSemibold);
+  --typographyTitle2LineHeight: var(--lineHeightBase600);
+  
+  --typographyTitle3FontFamily: var(--fontFamilyBase);
+  --typographyTitle3FontSize: var(--fontSizeBase500);
+  --typographyTitle3FontWeight: var(--fontWeightSemibold);
+  --typographyTitle3LineHeight: var(--lineHeightBase500);
+  
+  --typographyLargeTitle1FontFamily: var(--fontFamilyBase);
+  --typographyLargeTitle1FontSize: var(--fontSizeHero900);
+  --typographyLargeTitle1FontWeight: var(--fontWeightSemibold);
+  --typographyLargeTitle1LineHeight: var(--lineHeightHero900);
+  
+  --typographyDisplay1FontFamily: var(--fontFamilyBase);
+  --typographyDisplay1FontSize: var(--fontSizeHero1000);
+  --typographyDisplay1FontWeight: var(--fontWeightSemibold);
+  --typographyDisplay1LineHeight: var(--lineHeightHero1000);
+  
+  /* ===== SPACING TOKENS ===== */
+  
+  /* --- Horizontal Spacing --- */
+  --spacingHorizontalNone: 0;
+  --spacingHorizontalXXS: 2px;
+  --spacingHorizontalXS: 4px;
+  --spacingHorizontalS: 8px;
+  --spacingHorizontalSNudge: 6px;
+  --spacingHorizontalM: 12px;
+  --spacingHorizontalMNudge: 10px;
+  --spacingHorizontalL: 16px;
+  --spacingHorizontalLNudge: 14px;
+  --spacingHorizontalXL: 20px;
+  --spacingHorizontalXLNudge: 18px;
+  --spacingHorizontalXXL: 24px;
+  --spacingHorizontalXXLNudge: 22px;
+  --spacingHorizontalXXXL: 32px;
+  --spacingHorizontalXXXLNudge: 28px;
+  
+  /* --- Vertical Spacing --- */
+  --spacingVerticalNone: 0;
+  --spacingVerticalXXS: 2px;
+  --spacingVerticalXS: 4px;
+  --spacingVerticalS: 8px;
+  --spacingVerticalSNudge: 6px;
+  --spacingVerticalM: 12px;
+  --spacingVerticalMNudge: 10px;
+  --spacingVerticalL: 16px;
+  --spacingVerticalLNudge: 14px;
+  --spacingVerticalXL: 20px;
+  --spacingVerticalXLNudge: 18px;
+  --spacingVerticalXXL: 24px;
+  --spacingVerticalXXLNudge: 22px;
+  --spacingVerticalXXXL: 32px;
+  --spacingVerticalXXXLNudge: 28px;
+  
+  /* ===== BORDER & SHAPE TOKENS ===== */
+  
+  /* --- Border Radius --- */
+  --borderRadiusNone: 0;
+  --borderRadiusSmall: 2px;
+  --borderRadiusMedium: 4px;
+  --borderRadiusLarge: 6px;
+  --borderRadiusXLarge: 8px;
+  --borderRadiusCircular: 9999px;
+  
+  /* --- Border Width --- */
+  --strokeWidthThin: 1px;
+  --strokeWidthThick: 2px;
+  --strokeWidthThicker: 3px;
+  --strokeWidthThickest: 4px;
+  
+  /* --- Focus --- */
+  --focusStrokeInner: #ffffff;
+  --focusStrokeOuter: #000000;
+  --focusStrokeWidth: 2px;
+  
+  /* ===== EFFECT TOKENS ===== */
+  
+  /* --- Shadows --- */
+  --shadow2: 0 1px 2px rgba(0, 0, 0, 0.12);
+  --shadow4: 0 2px 4px rgba(0, 0, 0, 0.14);
+  --shadow8: 0 4px 8px rgba(0, 0, 0, 0.14);
+  --shadow16: 0 8px 16px rgba(0, 0, 0, 0.14);
+  --shadow28: 0 14px 28px rgba(0, 0, 0, 0.14);
+  --shadow64: 0 32px 64px rgba(0, 0, 0, 0.14);
+  
+  /* --- Z-index --- */
+  --zIndexBase: 0;
+  --zIndexPopup: 1000;
+  --zIndexTooltip: 1400;
+  --zIndexFlyout: 1300;
+  --zIndexDialog: 1200;
+  --zIndexMenu: 1100;
+  
+  /* ===== ANIMATION TOKENS ===== */
+  
+  /* --- Duration --- */
+  --durationUltraFast: 50ms;
+  --durationFaster: 100ms;
+  --durationFast: 150ms;
+  --durationNormal: 200ms;
+  --durationSlow: 300ms;
+  --durationSlower: 400ms;
+  --durationUltraSlow: 500ms;
+  
+  /* --- Easing --- */
+  --curveAccelerateMax: cubic-bezier(0.9, 0.1, 1, 0.2);
+  --curveAccelerateMid: cubic-bezier(0.7, 0, 1, 0.5);
+  --curveAccelerateMin: cubic-bezier(0.8, 0, 0.78, 1);
+  --curveDecelerateMax: cubic-bezier(0.1, 0.9, 0.2, 1);
+  --curveDecelerateMid: cubic-bezier(0.1, 0.7, 0.1, 1);
+  --curveDecelerateMin: cubic-bezier(0.33, 0, 0.1, 1);
+  --curveEasyEaseMax: cubic-bezier(0.8, 0, 0.2, 1);
+  --curveEasyEase: cubic-bezier(0.33, 0, 0.67, 1);
+  --curveLinear: cubic-bezier(0, 0, 1, 1);
+  
+  /* ===== COMPONENT-SPECIFIC TOKENS ===== */
+  
+  /* --- Button --- */
+  --buttonBorderRadius: var(--borderRadiusMedium);
+  --buttonBorderWidth: var(--strokeWidthThin);
+  --buttonHeight: 32px;
+  --buttonMaxWidth: 280px;
+  --buttonMinWidth: 96px;
+  --buttonPaddingHorizontal: var(--spacingHorizontalM);
+  --buttonIconSize: 16px;
+  --buttonIconSpacing: var(--spacingHorizontalS);
+  
+  /* --- Checkbox --- */
+  --checkboxBorderRadius: var(--borderRadiusSmall);
+  --checkboxBorderWidth: var(--strokeWidthThin);
+  --checkboxSize: 16px;
+  --checkboxSpacing: var(--spacingHorizontalS);
+  
+  /* --- Divider --- */
+  --dividerColor: var(--colorNeutralStroke2);
+  --dividerThickness: var(--strokeWidthThin);
+  
+  /* --- Input --- */
+  --inputBorderRadius: var(--borderRadiusMedium);
+  --inputBorderWidth: var(--strokeWidthThin);
+  --inputHeight: 32px;
+  --inputPaddingHorizontal: var(--spacingHorizontalM);
+  --inputFontFamily: var(--fontFamilyBase);
+  --inputFontSize: var(--fontSizeBase300);
+  --inputLineHeight: var(--lineHeightBase300);
+  
+  /* --- Menu --- */
+  --menuBorderRadius: var(--borderRadiusMedium);
+  --menuPaddingHorizontal: var(--spacingHorizontalS);
+  --menuPaddingVertical: var(--spacingVerticalS);
+  --menuItemBorderRadius: var(--borderRadiusSmall);
+  --menuItemHeight: 36px;
+  --menuItemPaddingHorizontal: var(--spacingHorizontalS);
+  
+  /* --- Radio --- */
+  --radioBorderRadius: var(--borderRadiusCircular);
+  --radioBorderWidth: var(--strokeWidthThin);
+  --radioSize: 16px;
+  --radioSpacing: var(--spacingHorizontalS);
+  
+  /* --- Switch --- */
+  --switchSize: 20px;
+  --switchTrackHeight: 20px;
+  --switchTrackWidth: 40px;
+  --switchTrackBorderRadius: var(--borderRadiusCircular);
+  
+  /* --- Toast --- */
+  --toastBorderRadius: var(--borderRadiusMedium);
+  --toastWidth: 320px;
+  --toastPaddingHorizontal: var(--spacingHorizontalM);
+  --toastPaddingVertical: var(--spacingVerticalS);
+  
+  /* --- Tooltip --- */
+  --tooltipBorderRadius: var(--borderRadiusMedium);
+  --tooltipPaddingHorizontal: var(--spacingHorizontalS);
+  --tooltipPaddingVertical: var(--spacingVerticalXXS);
+  --tooltipFontFamily: var(--fontFamilyBase);
+  --tooltipFontSize: var(--fontSizeBase200);
+  --tooltipLineHeight: var(--lineHeightBase200);
+}
+
+/* Dark Theme Overrides */
+.dark-theme {
+  /* --- Brand Colors --- */
+  --colorBrandBackground: #115ea3;
+  --colorBrandBackground1: #115ea3;
+  --colorBrandBackground2: #0f6cbd;
+  --colorBrandBackground3: #0c3b5e;
+  --colorBrandBackgroundHover: #0f6cbd;
+  --colorBrandBackgroundPressed: #0c3b5e;
+  --colorBrandBackgroundSelected: #0f6cbd;
+  
+  /* --- Neutral Colors --- */
+  --colorNeutralForeground1: #ffffff;
+  --colorNeutralForeground2: #d6d6d6;
+  --colorNeutralForeground3: #adadad;
+  --colorNeutralForegroundDisabled: #616161;
+  
+  --colorNeutralBackground1: #1a1a1a;
+  --colorNeutralBackground1Hover: #242424;
+  --colorNeutralBackground1Pressed: #2e2e2e;
+  --colorNeutralBackground1Selected: #242424;
+  --colorNeutralBackground2: #242424;
+  --colorNeutralBackground3: #2e2e2e;
+  --colorNeutralBackground4: #383838;
+  --colorNeutralBackground5: #424242;
+  --colorNeutralBackground6: #1a1a1a;
+  
+  --colorNeutralStroke1: #575757;
+  --colorNeutralStroke2: #424242;
+  --colorNeutralStroke3: #383838;
+  
+  /* --- Subtle Colors --- */
+  --colorSubtleBackground: #242424;
+  --colorSubtleBackgroundHover: #2e2e2e;
+  --colorSubtleBackgroundPressed: #383838;
+  --colorSubtleBackgroundSelected: #2e2e2e;
+  
+  /* --- Status Colors --- */
+  --colorStatusDangerBackground1: #442726;
+  --colorStatusDangerBackground2: #512c2c;
+  --colorStatusDangerBackground3: #6e3c3c;
+  --colorStatusDangerForeground1: #f1707b;
+  --colorStatusDangerForeground2: #ee5c68;
+  --colorStatusDangerForeground3: #e94957;
+  
+  --colorStatusSuccessBackground1: #0f3a0f;
+  --colorStatusSuccessBackground2: #104410;
+  --colorStatusSuccessBackground3: #0e5c0e;
+  --colorStatusSuccessForeground1: #92d992;
+  --colorStatusSuccessForeground2: #7cce7c;
+  --colorStatusSuccessForeground3: #67c267;
+  
+  --colorStatusWarningBackground1: #3e2e1e;
+  --colorStatusWarningBackground2: #4a3823;
+  --colorStatusWarningBackground3: #644c30;
+  --colorStatusWarningForeground1: #ff9746;
+  --colorStatusWarningForeground2: #fe8a30;
+  --colorStatusWarningForeground3: #f57d21;
+  
+  --colorStatusInfoBackground1: #142236;
+  --colorStatusInfoBackground2: #172a42;
+  --colorStatusInfoBackground3: #1d3a5c;
+  --colorStatusInfoForeground1: #4cb1f8;
+  --colorStatusInfoForeground2: #3aa3f5;
+  --colorStatusInfoForeground3: #2897f4;
+  
+  /* --- Shadows --- */
+  --shadow2: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow4: 0 2px 4px rgba(0, 0, 0, 0.28);
+  --shadow8: 0 4px 8px rgba(0, 0, 0, 0.28);
+  --shadow16: 0 8px 16px rgba(0, 0, 0, 0.28);
+  --shadow28: 0 14px 28px rgba(0, 0, 0, 0.28);
+  --shadow64: 0 32px 64px rgba(0, 0, 0, 0.28);
+}
+
+/* High Contrast Theme */
+.high-contrast-theme {
+  /* Simplified set for high contrast mode */
+  --colorBrandBackground: #0f6cbd;
+  --colorBrandForeground1: #0f6cbd;
+  --colorNeutralForeground1: #ffffff;
+  --colorNeutralBackground1: #000000;
+  --colorNeutralStroke1: #ffffff;
+  --colorStatusDangerForeground1: #ff0000;
+  --colorStatusSuccessForeground1: #3ff23f;
+  --colorStatusWarningForeground1: #ffff00;
+  --colorStatusInfoForeground1: #4cc4ff;
+  --focusStrokeOuter: #ffffff;
+  --focusStrokeInner: #000000;
+}

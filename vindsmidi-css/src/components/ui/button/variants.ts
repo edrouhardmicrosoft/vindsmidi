@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority'
 
 /**
  * Button component variants
- * Using Fluent UI token variables as CSS custom properties (with --fluent- prefix)
+ * Using Fluent UI token variables as CSS custom properties with --fluent- prefix
  */
 export const buttonVariants = cva(
   // Base classes for all buttons
@@ -11,20 +11,20 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-[var(--fluent-color-brand-background)] text-white hover:bg-[var(--fluent-color-brand-background-hover)] active:bg-[var(--fluent-color-brand-background-pressed)]',
+          '!bg-[var(--fluent-color-brand-background)] !text-white hover:!bg-[var(--fluent-color-brand-background-hover)] active:!bg-[var(--fluent-color-brand-background-pressed)]',
         primary:
-          'bg-[var(--fluent-color-brand-background)] text-white hover:bg-[var(--fluent-color-brand-background-hover)] active:bg-[var(--fluent-color-brand-background-pressed)]',
+          '!bg-red-500 !text-white hover:!bg-[var(--fluent-color-brand-background-hover)] active:!bg-[var(--fluent-color-brand-background-pressed)]',
         secondary:
-          'bg-[var(--fluent-color-neutral-background-2)] text-[var(--fluent-color-neutral-foreground-1)] hover:bg-[var(--fluent-color-neutral-background-2-hover)] active:bg-[var(--fluent-color-neutral-background-2-pressed)]',
+          '!bg-[var(--fluent-color-neutral-background-2)] !text-[var(--fluent-color-neutral-foreground-1)] hover:!bg-[var(--fluent-color-neutral-background-2-hover)] active:!bg-[var(--fluent-color-neutral-background-2-pressed)]',
         outline:
-          'border border-[var(--fluent-color-brand-stroke-1)] bg-transparent text-[var(--fluent-color-brand-foreground-1)] hover:bg-[var(--fluent-color-neutral-background-1-hover)] active:bg-[var(--fluent-color-neutral-background-1-pressed)]',
+          '!border !border-[var(--fluent-color-brand-stroke-1)] !bg-transparent !text-[var(--fluent-color-brand-foreground-1)] hover:!bg-[var(--fluent-color-neutral-background-1-hover)] active:!bg-[var(--fluent-color-neutral-background-1-pressed)]',
         ghost:
-          'bg-transparent text-[var(--fluent-color-brand-foreground-1)] hover:bg-[var(--fluent-color-neutral-background-2)] active:bg-[var(--fluent-color-neutral-background-2-pressed)]',
+          '!bg-transparent !text-[var(--fluent-color-brand-foreground-1)] hover:!bg-[var(--fluent-color-neutral-background-2)] active:!bg-[var(--fluent-color-neutral-background-2-pressed)]',
         subtle:
-          'bg-transparent text-[var(--fluent-color-brand-foreground-1)] hover:bg-[var(--fluent-color-neutral-background-2)] active:bg-[var(--fluent-color-neutral-background-2-pressed)]',
+          '!bg-transparent !text-[var(--fluent-color-brand-foreground-1)] hover:!bg-[var(--fluent-color-neutral-background-2)] active:!bg-[var(--fluent-color-neutral-background-2-pressed)]',
         transparent:
-          'bg-transparent text-[var(--fluent-color-brand-foreground-1)] hover:bg-[var(--fluent-color-neutral-background-2)] active:bg-[var(--fluent-color-neutral-background-2-pressed)]',
-        link: 'bg-transparent text-[var(--fluent-color-brand-foreground-link)] hover:text-[var(--fluent-color-brand-foreground-link-hover)] hover:underline p-0 h-auto',
+          '!bg-transparent !text-[var(--fluent-color-brand-foreground-1)] hover:!bg-[var(--fluent-color-neutral-background-2)] active:!bg-[var(--fluent-color-neutral-background-2-pressed)]',
+        link: '!bg-transparent !text-[var(--fluent-color-brand-foreground-link)] hover:!text-[var(--fluent-color-brand-foreground-link-hover)] hover:underline p-0 h-auto',
       },
       size: {
         sm: 'h-8 text-[var(--fluent-font-size-xs)] px-3 py-1',

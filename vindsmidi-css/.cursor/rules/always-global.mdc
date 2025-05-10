@@ -1,0 +1,34 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Global Guiding Principles & Preferences
+
+## Guiding Principles
+1. Observability: add excessive logging
+2. Small files: limit files to 200 lines
+3. Micro-milestones: perform work in commit-sized chunks. Optimize for rewinding.
+
+## Package Managers
+Default to `npm` unless otherwise specified
+
+## Prefered Libraries
+## Preferred Libraries
+- Testing: `vitest`
+
+## Running Terminal Commands
+**Important:** Avoid newline characters within single arguments or strings passed to the terminal tool, as they can cause parsing issues.
+
+## Git
+- AVOID --no-verify
+- Never push a failing test to the repo
+
+## Project and Config Initialization
+Use popular CLIs for creating projects and configurations whenever possible.
+
+Examples: 
+- npm init
+- npm dlx shadcn@latest add table accordion tabs separator
+- npm --package=typescript dlx tsc --init
+- npm create cloudflare@latest . --framework=next --platform=pages

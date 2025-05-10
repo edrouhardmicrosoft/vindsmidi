@@ -91,7 +91,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ label, message, state, required = false, disabled = false, id, type = 'text', ...props }, ref) => {
     // Remove children from props if present
     const { children, ...rest } = props as any
-    console.log('Input props passed to FluentInput:', rest)
     // Generate a unique ID if none provided
     const uniqueId = React.useId()
     const inputId = id || uniqueId

@@ -11,7 +11,7 @@ export interface ButtonProps
       /**
        * The visual style of the button
        */
-      variant?: 'default' | 'secondary' | 'outline' | 'ghost' | 'link'
+      variant?: 'primary' | 'default' | 'secondary' | 'outline' | 'ghost' | 'link'
 
       /**
        * The size of the button
@@ -70,16 +70,3 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 
 Button.displayName = 'Button'
-
-/**
- * Framework-agnostic implementation notes:
- *
- * For non-React frameworks:
- * 1. Vue: Use a <template> with v-bind to apply the classes
- * 2. Svelte: Use class:directive to conditionally apply classes
- * 3. Web Components: Use setAttribute to apply the classes
- * 4. Solid: Similar to React with solid-js patterns
- *
- * The core styling (buttonVariants) remains the same across all frameworks
- * Only the implementation pattern changes
- */

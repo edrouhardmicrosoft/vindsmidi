@@ -1,4 +1,4 @@
-import '/styles/main.css' // REVIEW: Ensure this import is present and correct.
+import '../styles/main.css'
 import type { Preview } from '@storybook/react'
 
 const preview: Preview = {

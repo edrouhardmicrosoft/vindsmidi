@@ -1,5 +1,5 @@
-import type { ComponentProps as FluentComponentProps } from '@fluentui/react-components'
 import type React from 'react'
+import type { ComponentProps as FluentComponentProps } from '@fluentui/react-components'
 
 /**
  * Standard size options for components

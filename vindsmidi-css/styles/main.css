@@ -1,6 +1,6 @@
 @import './fluent-ui-tokens.css'; /* REVIEW: Should be at the top */
 
-@tailwind base; /* REVIEW: Correct order */
+@tailwind base; 
 @tailwind components;
 @tailwind utilities;
 
