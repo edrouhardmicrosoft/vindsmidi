@@ -1,0 +1,48 @@
+{
+  "name": "@vindsmidi/cli",
+  "version": "0.1.0",
+  "description": "CLI tool for Vindsmidi UI (Fluent UI + Tailwind CSS 4.0)",
+  "main": "dist/index.js",
+  "bin": {
+    "vindsmidi": "./bin/index.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src/**/*.ts",
+    "test": "vitest"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "cli",
+    "ui",
+    "components",
+    "fluent-ui",
+    "tailwind"
+  ],
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "chokidar": "^4.0.3",
+    "commander": "^13.1.0",
+    "execa": "^9.5.3",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.2",
+    "inquirer": "^12.6.1",
+    "lodash.template": "^4.5.0",
+    "ora": "^8.2.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.8",
+    "@types/lodash.template": "^4.5.3",
+    "@types/node": "^22.15.17",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.3"
+  }
+}
