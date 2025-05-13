@@ -1,0 +1,18 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Map Fluent UI colors to Tailwind
+        brand: 'var(--fluent-color-brand-background)',
+        'brand-hover': 'var(--fluent-color-brand-background-hover)',
+        'brand-pressed': 'var(--fluent-color-brand-background-pressed)',
+      },
+    },
+  },
+  plugins: [],
+} 

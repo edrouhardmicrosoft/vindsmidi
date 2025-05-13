@@ -1,0 +1,28 @@
+import * as React from 'react';
+
+/**
+ * Button component using the Component Shell Pattern
+ */
+export const Button = React.forwardRef<HTMLButtonElement, any>(
+  ({ 
+    variant = 'primary', 
+    size = 'md', 
+    className, 
+    disabled = false, 
+    children, 
+    ...props 
+  }, ref) => {
+    return (
+      <button
+        ref={ref}
+        className={`button button-${variant} button-${size}`}
+        disabled={disabled}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+
+Button.displayName = 'Button'; 

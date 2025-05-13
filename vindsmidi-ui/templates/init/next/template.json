@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "source": "package.json.template",
+      "target": "package.json"
+    },
+    {
+      "source": "vite.config.ts.template",
+      "target": "vite.config.ts"
+    },
+    {
+      "source": "tailwind.config.js.template",
+      "target": "tailwind.config.js"
+    },
+    {
+      "source": "src/styles/main.css.template",
+      "target": "src/styles/main.css"
+    },
+    {
+      "source": "src/App.tsx.template",
+      "target": "src/App.tsx"
+    },
+    {
+      "source": "src/main.tsx.template",
+      "target": "src/main.tsx"
+    },
+    {
+      "source": "src/utilities/classNames.ts.template",
+      "target": "src/utilities/classNames.ts"
+    },
+    {
+      "source": "src/utilities/index.ts.template",
+      "target": "src/utilities/index.ts"
+    }
+  ]
+}

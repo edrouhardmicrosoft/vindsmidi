@@ -4,7 +4,7 @@
   "description": "CLI tool for Vindsmidi UI (Fluent UI + Tailwind CSS 4.0)",
   "main": "dist/index.js",
   "bin": {
-    "vindsmidi": "./bin/index.js"
+    "vui": "./bin/index.js"
   },
   "scripts": {
     "build": "tsup",
