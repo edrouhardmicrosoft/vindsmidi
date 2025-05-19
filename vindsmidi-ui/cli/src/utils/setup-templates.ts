@@ -109,21 +109,22 @@ export function cn(...classes: (string | undefined | null | false)[]): string {
 }
 `;
           } else if (relPath.includes('App.tsx')) {
-            templateContent += `
-import React from 'react';
-import './styles/main.css';
-
-function App() {
-  return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold">Welcome to Vindsmidi UI</h1>
-      <p>Edit this component to get started!</p>
-    </div>
-  );
-}
-
-export default App;
-`;
+            // Using a template literal for React component code
+            templateContent += [
+              "import React from 'react';",
+              "import './styles/main.css';",
+              "",
+              "function App() {",
+              "  return (",
+              "    <div className=\"p-4\">",
+              "      <h1 className=\"text-xl font-bold\">Welcome to Vindsmidi UI</h1>",
+              "      <p>Edit this component to get started!</p>",
+              "    </div>",
+              "  );",
+              "}",
+              "",
+              "export default App;"
+            ].join('\n');
           }
         } else if (relPath.endsWith('tailwind.config.js.template')) {
           templateContent = `/** @type {import('tailwindcss').Config} */
