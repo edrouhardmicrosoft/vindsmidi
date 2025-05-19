@@ -31,7 +31,6 @@ var import_ora = __toESM(require("ora"));
 var import_execa = require("execa");
 
 // src/utils/logger.ts
-var import_chalk = __toESM(require("chalk"));
 var import_picocolors = __toESM(require("picocolors"));
 var logger = {
   info: (message) => {
@@ -55,11 +54,11 @@ var logger = {
     console.log(message);
   },
   title: (message) => {
-    console.log(import_chalk.default.bold(`
+    console.log(import_picocolors.default.bold(`
 ${message}`));
   },
   divider: () => {
-    console.log(import_chalk.default.dim("\u2500".repeat(40)));
+    console.log(import_picocolors.default.dim("\u2500".repeat(40)));
   },
   newLine: () => {
     console.log();
@@ -443,7 +442,7 @@ var import_ora2 = __toESM(require("ora"));
 var import_fs_extra5 = __toESM(require("fs-extra"));
 var import_path5 = __toESM(require("path"));
 async function detectProject(dir) {
-  var _a, _b, _c, _d, _e, _f, _g, _h, _i;
+  var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u;
   try {
     const packageJsonPath = import_path5.default.join(dir, "package.json");
     const hasPackageJson = await import_fs_extra5.default.pathExists(packageJsonPath);
@@ -452,32 +451,82 @@ async function detectProject(dir) {
     }
     const packageJson = await import_fs_extra5.default.readJson(packageJsonPath);
     let framework = "unknown";
-    if ((_a = packageJson.dependencies) == null ? void 0 : _a.next) {
+    if (((_a = packageJson.dependencies) == null ? void 0 : _a.next) || ((_b = packageJson.devDependencies) == null ? void 0 : _b.next)) {
       framework = "next";
-    } else if ((_b = packageJson.dependencies) == null ? void 0 : _b.remix) {
+    } else if (((_c = packageJson.dependencies) == null ? void 0 : _c.remix) || ((_d = packageJson.devDependencies) == null ? void 0 : _d.remix) || ((_e = packageJson.dependencies) == null ? void 0 : _e["@remix-run/react"]) || ((_f = packageJson.devDependencies) == null ? void 0 : _f["@remix-run/react"])) {
       framework = "remix";
-    } else if (((_c = packageJson.dependencies) == null ? void 0 : _c["@vitejs/plugin-react"]) || ((_d = packageJson.devDependencies) == null ? void 0 : _d["@vitejs/plugin-react"])) {
+    } else if ((((_g = packageJson.dependencies) == null ? void 0 : _g["@vitejs/plugin-react"]) || ((_h = packageJson.devDependencies) == null ? void 0 : _h["@vitejs/plugin-react"])) && (((_i = packageJson.dependencies) == null ? void 0 : _i.react) || ((_j = packageJson.devDependencies) == null ? void 0 : _j.react))) {
       framework = "vite";
-    } else if ((_e = packageJson.dependencies) == null ? void 0 : _e.react) {
-      framework = "react";
+    } else if (((_k = packageJson.dependencies) == null ? void 0 : _k.react) || ((_l = packageJson.devDependencies) == null ? void 0 : _l.react)) {
+      if (((_m = packageJson.dependencies) == null ? void 0 : _m["react-scripts"]) || ((_n = packageJson.devDependencies) == null ? void 0 : _n["react-scripts"])) {
+        framework = "react";
+      } else {
+        framework = "react";
+      }
+    }
+    if (packageJson.scripts) {
+      if (framework === "unknown" && ((_o = packageJson.scripts.dev) == null ? void 0 : _o.includes("vite"))) {
+        framework = "vite";
+      } else if (framework === "unknown" && ((_p = packageJson.scripts.start) == null ? void 0 : _p.includes("react-scripts"))) {
+        framework = "react";
+      } else if (framework === "unknown" && ((_q = packageJson.scripts.dev) == null ? void 0 : _q.includes("next"))) {
+        framework = "next";
+      }
     }
     let packageManager = "npm";
     if (await import_fs_extra5.default.pathExists(import_path5.default.join(dir, "yarn.lock"))) {
       packageManager = "yarn";
     } else if (await import_fs_extra5.default.pathExists(import_path5.default.join(dir, "pnpm-lock.yaml"))) {
       packageManager = "pnpm";
+    } else if (await import_fs_extra5.default.pathExists(import_path5.default.join(dir, "package-lock.json"))) {
+      packageManager = "npm";
+    } else {
+      const yarnBin = import_path5.default.join(dir, "node_modules", ".bin", "yarn");
+      const pnpmBin = import_path5.default.join(dir, "node_modules", ".bin", "pnpm");
+      if (await import_fs_extra5.default.pathExists(yarnBin)) {
+        packageManager = "yarn";
+      } else if (await import_fs_extra5.default.pathExists(pnpmBin)) {
+        packageManager = "pnpm";
+      }
     }
-    const hasTypeScript = !!(((_f = packageJson.dependencies) == null ? void 0 : _f.typescript) || ((_g = packageJson.devDependencies) == null ? void 0 : _g.typescript) || await import_fs_extra5.default.pathExists(import_path5.default.join(dir, "tsconfig.json")));
-    const hasTailwind = !!(((_h = packageJson.dependencies) == null ? void 0 : _h.tailwindcss) || ((_i = packageJson.devDependencies) == null ? void 0 : _i.tailwindcss));
+    const hasTypeScript = !!(((_r = packageJson.dependencies) == null ? void 0 : _r.typescript) || ((_s = packageJson.devDependencies) == null ? void 0 : _s.typescript) || await import_fs_extra5.default.pathExists(import_path5.default.join(dir, "tsconfig.json")));
+    const hasTailwind = !!(((_t = packageJson.dependencies) == null ? void 0 : _t.tailwindcss) || ((_u = packageJson.devDependencies) == null ? void 0 : _u.tailwindcss));
     let sourceDir = "src";
     let componentsDir = "src/components";
     if (framework === "next") {
       const hasSrcDir = await import_fs_extra5.default.pathExists(import_path5.default.join(dir, "src"));
       sourceDir = hasSrcDir ? "src" : ".";
-      componentsDir = import_path5.default.join(sourceDir, "components");
+      const hasAppDir = await import_fs_extra5.default.pathExists(import_path5.default.join(dir, sourceDir, "app"));
+      const hasPagesDir = await import_fs_extra5.default.pathExists(import_path5.default.join(dir, sourceDir, "pages"));
+      if (hasAppDir) {
+        const appComponentsDir = import_path5.default.join(sourceDir, "app", "_components");
+        if (await import_fs_extra5.default.pathExists(import_path5.default.join(dir, appComponentsDir))) {
+          componentsDir = appComponentsDir;
+        } else {
+          componentsDir = import_path5.default.join(sourceDir, "components");
+        }
+      } else if (hasPagesDir) {
+        componentsDir = import_path5.default.join(sourceDir, "components");
+      } else {
+        componentsDir = import_path5.default.join(sourceDir, "components");
+      }
     } else if (framework === "remix") {
-      sourceDir = "app";
-      componentsDir = "app/components";
+      const hasAppDir = await import_fs_extra5.default.pathExists(import_path5.default.join(dir, "app"));
+      sourceDir = hasAppDir ? "app" : "src";
+      componentsDir = import_path5.default.join(sourceDir, "components");
+    } else {
+      const possibleComponentDirs = [
+        import_path5.default.join(sourceDir, "components"),
+        "components",
+        import_path5.default.join(sourceDir, "ui"),
+        import_path5.default.join(sourceDir, "ui", "components")
+      ];
+      for (const possibleDir of possibleComponentDirs) {
+        if (await import_fs_extra5.default.pathExists(import_path5.default.join(dir, possibleDir))) {
+          componentsDir = possibleDir;
+          break;
+        }
+      }
     }
     return {
       framework,
@@ -562,7 +611,7 @@ var import_inquirer2 = __toESM(require("inquirer"));
 var import_path7 = __toESM(require("path"));
 var import_fs_extra6 = __toESM(require("fs-extra"));
 async function configureTailwind(projectDir, options = {}) {
-  var _a;
+  var _a, _b;
   const jsConfigPath = import_path7.default.join(projectDir, "tailwind.config.js");
   const tsConfigPath = import_path7.default.join(projectDir, "tailwind.config.ts");
   let configPath = "";
@@ -594,11 +643,22 @@ export default {
   if ((_a = options.componentPaths) == null ? void 0 : _a.length) {
     const pathsString = options.componentPaths.map((p) => `"${p}"`).join(",\n      ");
     if (updatedContent.includes("content: [")) {
-      updatedContent = updatedContent.replace(
-        "content: [",
-        `content: [
+      const contentMatch = updatedContent.match(/content:\s*\[([^\]]*)\]/s);
+      if (contentMatch && ((_b = contentMatch[1]) == null ? void 0 : _b.trim())) {
+        const existingContent = contentMatch[1].trim();
+        const lastCharacter = existingContent.slice(-1);
+        const separator = lastCharacter === "," ? "\n      " : ",\n      ";
+        updatedContent = updatedContent.replace(
+          /content:\s*\[([^\]]*)\]/s,
+          `content: [$1${separator}${pathsString}`
+        );
+      } else {
+        updatedContent = updatedContent.replace(
+          "content: [",
+          `content: [
       ${pathsString},`
-      );
+        );
+      }
     }
   }
   if (options.fluentTokens) {
@@ -648,17 +708,38 @@ ${tokensSnippet}`
     }
   }
   if (options.darkMode) {
+    let darkModeValue = options.darkMode;
+    let darkModeClass = "";
+    if (darkModeValue.startsWith("class:")) {
+      darkModeClass = darkModeValue.substring("class:".length);
+      darkModeValue = "class";
+    }
     if (updatedContent.includes("darkMode:")) {
-      updatedContent = updatedContent.replace(
-        /darkMode:\s*['"]?[^,\n]*['"]?/,
-        `darkMode: '${options.darkMode}'`
-      );
+      if (darkModeClass) {
+        updatedContent = updatedContent.replace(
+          /darkMode:\s*['"]?[^,\n]*['"]?/,
+          `darkMode: { className: '${darkModeClass}', strategy: '${darkModeValue}' }`
+        );
+      } else {
+        updatedContent = updatedContent.replace(
+          /darkMode:\s*['"]?[^,\n]*['"]?/,
+          `darkMode: '${darkModeValue}'`
+        );
+      }
     } else {
-      updatedContent = updatedContent.replace(
-        "export default {",
-        `export default {
-  darkMode: '${options.darkMode}',`
-      );
+      if (darkModeClass) {
+        updatedContent = updatedContent.replace(
+          "export default {",
+          `export default {
+  darkMode: { className: '${darkModeClass}', strategy: '${darkModeValue}' },`
+        );
+      } else {
+        updatedContent = updatedContent.replace(
+          "export default {",
+          `export default {
+  darkMode: '${darkModeValue}',`
+        );
+      }
     }
   }
   await import_fs_extra6.default.writeFile(configPath, updatedContent);
@@ -792,7 +873,7 @@ function registerConfigCommand(program) {
             name: "darkMode",
             message: "Select dark mode strategy:",
             choices: [
-              { name: "Class (.dark-theme)", value: "class" },
+              { name: "Class (.dark-theme)", value: "class:.dark-theme" },
               { name: "Media query (prefers-color-scheme)", value: "media" }
             ],
             when: (answers2) => answers2.actions.includes("darkMode")
@@ -849,6 +930,8 @@ function registerDevCommand(program) {
         if (code !== 0) {
           logger.error(`Development server exited with code ${code}`);
           process.exit(code || 1);
+        } else {
+          logger.success(`Development server exited successfully`);
         }
       });
       await child;
@@ -968,8 +1051,84 @@ async function ensureTemplates() {
       const filePath = import_path10.default.join(frameworkDir, relPath);
       await import_fs_extra9.default.ensureDir(import_path10.default.dirname(filePath));
       if (!await import_fs_extra9.default.pathExists(filePath)) {
-        await import_fs_extra9.default.writeFile(filePath, `// Placeholder for ${relPath}`);
-        logger.debug(`Created placeholder template: ${filePath}`);
+        let templateContent = "";
+        if (relPath.endsWith("package.json.template")) {
+          templateContent = JSON.stringify({
+            name: "{{ projectName }}",
+            version: "0.1.0",
+            private: true,
+            scripts: {
+              "dev": "vite",
+              "build": "vite build",
+              "preview": "vite preview"
+            },
+            dependencies: {
+              "react": "^18.2.0",
+              "react-dom": "^18.2.0"
+            },
+            devDependencies: {
+              "@types/react": "^18.2.25",
+              "@types/react-dom": "^18.2.11",
+              "tailwindcss": "^4.0.0-alpha.3",
+              "typescript": "^5.3.3",
+              "vite": "^5.0.10"
+            }
+          }, null, 2);
+        } else if (relPath.endsWith(".css.template")) {
+          templateContent = `@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add your custom CSS below */
+`;
+        } else if (relPath.endsWith(".tsx.template") || relPath.endsWith(".ts.template")) {
+          templateContent = `// ${import_path10.default.basename(relPath)}
+// Generated by Vindsmidi CLI
+`;
+          if (relPath.includes("classNames")) {
+            templateContent += `
+/**
+ * Combines multiple class names into a single string
+ */
+export function cn(...classes: (string | undefined | null | false)[]): string {
+  return classes.filter(Boolean).join(' ');
+}
+`;
+          } else if (relPath.includes("App.tsx")) {
+            templateContent += `
+import React from 'react';
+import './styles/main.css';
+
+function App() {
+  return (
+    <div className="p-4">
+      <h1 className="text-xl font-bold">Welcome to Vindsmidi UI</h1>
+      <p>Edit this component to get started!</p>
+    </div>
+  );
+}
+
+export default App;
+`;
+          }
+        } else if (relPath.endsWith("tailwind.config.js.template")) {
+          templateContent = `/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+`;
+        } else {
+          templateContent = `// Placeholder for ${relPath}`;
+        }
+        await import_fs_extra9.default.writeFile(filePath, templateContent);
+        logger.debug(`Created template: ${filePath}`);
       }
     }
   }
@@ -990,15 +1149,6 @@ async function ensureTemplates() {
   registerConfigCommand(program);
   registerDevCommand(program);
   registerDoctorCommand(program);
-  program.command("test-logger").description("Test the logger utility").action(() => {
-    logger.title("Logger Test");
-    logger.info("This is an info message");
-    logger.success("This is a success message");
-    logger.warn("This is a warning message");
-    logger.error("This is an error message");
-    logger.divider();
-    logger.log("This is a regular log message");
-  });
   program.exitOverride((err) => {
     if (err.code === "commander.help") {
       process.exit(0);

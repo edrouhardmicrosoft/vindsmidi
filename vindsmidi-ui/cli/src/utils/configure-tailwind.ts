@@ -5,7 +5,7 @@ import { logger } from "./logger";
 export interface TailwindConfigOptions {
   fluentTokens?: boolean;
   componentPaths?: string[];
-  darkMode?: "class" | "media";
+  darkMode?: "class:.dark-theme" | "class" | "media"; // Updated to support custom class name
 }
 
 /**
@@ -64,10 +64,28 @@ export default {
       .join(",\n      ");
 
     if (updatedContent.includes("content: [")) {
-      updatedContent = updatedContent.replace(
-        "content: [",
-        `content: [\n      ${pathsString},`
-      );
+      // Check if content array contains values already
+      const contentMatch = updatedContent.match(/content:\s*\[([^\]]*)\]/s);
+      
+      if (contentMatch && contentMatch[1]?.trim()) {
+        // Content array isn't empty, add paths after existing content
+        const existingContent = contentMatch[1].trim();
+        const lastCharacter = existingContent.slice(-1);
+        
+        // Check if the last character is a comma
+        const separator = lastCharacter === ',' ? '\n      ' : ',\n      ';
+        
+        updatedContent = updatedContent.replace(
+          /content:\s*\[([^\]]*)\]/s,
+          `content: [$1${separator}${pathsString}`
+        );
+      } else {
+        // Content array is empty, just add the paths
+        updatedContent = updatedContent.replace(
+          "content: [",
+          `content: [\n      ${pathsString},`
+        );
+      }
     }
   }
 
@@ -123,17 +141,41 @@ export default {
 
   // Configure dark mode
   if (options.darkMode) {
+    let darkModeValue = options.darkMode;
+    let darkModeClass = '';
+    
+    // Check if this is a class with specified name format
+    if (darkModeValue.startsWith('class:')) {
+      // Extract the class name
+      darkModeClass = darkModeValue.substring('class:'.length);
+      darkModeValue = 'class';
+    }
+    
     if (updatedContent.includes("darkMode:")) {
-      updatedContent = updatedContent.replace(
-        /darkMode:\s*['"]?[^,\n]*['"]?/,
-        `darkMode: '${options.darkMode}'`
-      );
+      if (darkModeClass) {
+        updatedContent = updatedContent.replace(
+          /darkMode:\s*['"]?[^,\n]*['"]?/,
+          `darkMode: { className: '${darkModeClass}', strategy: '${darkModeValue}' }`
+        );
+      } else {
+        updatedContent = updatedContent.replace(
+          /darkMode:\s*['"]?[^,\n]*['"]?/,
+          `darkMode: '${darkModeValue}'`
+        );
+      }
     } else {
       // Add dark mode if not present
-      updatedContent = updatedContent.replace(
-        "export default {",
-        `export default {\n  darkMode: '${options.darkMode}',`
-      );
+      if (darkModeClass) {
+        updatedContent = updatedContent.replace(
+          "export default {",
+          `export default {\n  darkMode: { className: '${darkModeClass}', strategy: '${darkModeValue}' },`
+        );
+      } else {
+        updatedContent = updatedContent.replace(
+          "export default {",
+          `export default {\n  darkMode: '${darkModeValue}',`
+        );
+      }
     }
   }
 

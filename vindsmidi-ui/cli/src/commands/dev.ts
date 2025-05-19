@@ -38,6 +38,8 @@ export function registerDevCommand(program: Command): void {
           if (code !== 0) {
             logger.error(`Development server exited with code ${code}`);
             process.exit(code || 1);
+          } else {
+            logger.success(`Development server exited successfully`);
           }
         });
 

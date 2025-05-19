@@ -27,25 +27,65 @@ export async function detectProject(dir: string): Promise<ProjectInfo> {
 
     // Detect framework
     let framework: ProjectInfo["framework"] = "unknown";
-    if (packageJson.dependencies?.next) {
+    
+    // Check for Next.js - also check devDependencies
+    if (packageJson.dependencies?.next || packageJson.devDependencies?.next) {
       framework = "next";
-    } else if (packageJson.dependencies?.remix) {
+    } 
+    // Check for Remix - also check devDependencies
+    else if (packageJson.dependencies?.remix || packageJson.devDependencies?.remix || 
+             packageJson.dependencies?.["@remix-run/react"] || packageJson.devDependencies?.["@remix-run/react"]) {
       framework = "remix";
-    } else if (
-      packageJson.dependencies?.["@vitejs/plugin-react"] ||
-      packageJson.devDependencies?.["@vitejs/plugin-react"]
+    } 
+    // Check for Vite with React
+    else if (
+      (packageJson.dependencies?.["@vitejs/plugin-react"] || packageJson.devDependencies?.["@vitejs/plugin-react"]) &&
+      (packageJson.dependencies?.react || packageJson.devDependencies?.react)
     ) {
       framework = "vite";
-    } else if (packageJson.dependencies?.react) {
-      framework = "react";
+    } 
+    // Check for React without Vite
+    else if (packageJson.dependencies?.react || packageJson.devDependencies?.react) {
+      // Check if it might be a Create React App project
+      if (packageJson.dependencies?.["react-scripts"] || packageJson.devDependencies?.["react-scripts"]) {
+        framework = "react";
+      } else {
+        framework = "react";
+      }
+    }
+
+    // Also check the package.json scripts for further clarification
+    if (packageJson.scripts) {
+      if (framework === "unknown" && packageJson.scripts.dev?.includes("vite")) {
+        framework = "vite";
+      } else if (framework === "unknown" && packageJson.scripts.start?.includes("react-scripts")) {
+        framework = "react";
+      } else if (framework === "unknown" && packageJson.scripts.dev?.includes("next")) {
+        framework = "next";
+      }
     }
 
     // Detect package manager
     let packageManager: ProjectInfo["packageManager"] = "npm";
+    
+    // Check for specific lock files
     if (await fs.pathExists(path.join(dir, "yarn.lock"))) {
       packageManager = "yarn";
     } else if (await fs.pathExists(path.join(dir, "pnpm-lock.yaml"))) {
       packageManager = "pnpm";
+    } else if (await fs.pathExists(path.join(dir, "package-lock.json"))) {
+      packageManager = "npm";
+    } else {
+      // If no lock file found, try to detect by looking at the node_modules/.bin directory
+      // This might help in cases where the lock file is gitignored but node_modules is present
+      const yarnBin = path.join(dir, "node_modules", ".bin", "yarn");
+      const pnpmBin = path.join(dir, "node_modules", ".bin", "pnpm");
+      
+      if (await fs.pathExists(yarnBin)) {
+        packageManager = "yarn";
+      } else if (await fs.pathExists(pnpmBin)) {
+        packageManager = "pnpm";
+      }
     }
 
     // Detect TypeScript
@@ -69,10 +109,45 @@ export async function detectProject(dir: string): Promise<ProjectInfo> {
       // Check for src directory in Next.js
       const hasSrcDir = await fs.pathExists(path.join(dir, "src"));
       sourceDir = hasSrcDir ? "src" : ".";
-      componentsDir = path.join(sourceDir, "components");
+      
+      // Check for app directory (App Router) vs pages directory (Pages Router)
+      const hasAppDir = await fs.pathExists(path.join(dir, sourceDir, "app"));
+      const hasPagesDir = await fs.pathExists(path.join(dir, sourceDir, "pages"));
+      
+      if (hasAppDir) {
+        // App Router - components typically in src/app/_components or src/components
+        const appComponentsDir = path.join(sourceDir, "app", "_components");
+        if (await fs.pathExists(path.join(dir, appComponentsDir))) {
+          componentsDir = appComponentsDir;
+        } else {
+          componentsDir = path.join(sourceDir, "components");
+        }
+      } else if (hasPagesDir) {
+        // Pages Router - components typically in src/components or components
+        componentsDir = path.join(sourceDir, "components");
+      } else {
+        componentsDir = path.join(sourceDir, "components");
+      }
     } else if (framework === "remix") {
-      sourceDir = "app";
-      componentsDir = "app/components";
+      // Remix can have different structures
+      const hasAppDir = await fs.pathExists(path.join(dir, "app"));
+      sourceDir = hasAppDir ? "app" : "src";
+      componentsDir = path.join(sourceDir, "components");
+    } else {
+      // Check for custom component directories in other frameworks
+      const possibleComponentDirs = [
+        path.join(sourceDir, "components"),
+        "components",
+        path.join(sourceDir, "ui"),
+        path.join(sourceDir, "ui", "components"),
+      ];
+      
+      for (const possibleDir of possibleComponentDirs) {
+        if (await fs.pathExists(path.join(dir, possibleDir))) {
+          componentsDir = possibleDir;
+          break;
+        }
+      }
     }
 
     return {

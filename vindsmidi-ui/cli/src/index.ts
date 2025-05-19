@@ -30,19 +30,6 @@ import { ensureTemplates } from "./utils/setup-templates";
   registerDevCommand(program);
   registerDoctorCommand(program);
 
-  // Temporary addition to test the logger
-  program
-    .command("test-logger")
-    .description("Test the logger utility")
-    .action(() => {
-      logger.title("Logger Test");
-      logger.info("This is an info message");
-      logger.success("This is a success message");
-      logger.warn("This is a warning message");
-      logger.error("This is an error message");
-      logger.divider();
-      logger.log("This is a regular log message");
-    });
 
   // Handle errors
   program.exitOverride((err) => {

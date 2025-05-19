@@ -25,8 +25,18 @@ export async function copyFile(
   try {
     await fs.ensureDir(path.dirname(destination));
 
-    const content = await fs.readFile(source, "utf8");
-    // Future enhancement: process template variables
+    let content = await fs.readFile(source, "utf8");
+    
+    // Process template variables
+    if (Object.keys(variables).length > 0) {
+      // Simple variable replacement using {{varName}} format
+      Object.keys(variables).forEach(key => {
+        const value = String(variables[key] || "");
+        const regex = new RegExp(`{{\\s*${key}\\s*}}`, "g");
+        content = content.replace(regex, value);
+      });
+    }
+    
     await fs.writeFile(destination, content);
 
     logger.debug(`Copied: ${source} -> ${destination}`);

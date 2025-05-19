@@ -60,7 +60,7 @@ export function registerConfigCommand(program: Command): void {
               name: "darkMode",
               message: "Select dark mode strategy:",
               choices: [
-                { name: "Class (.dark-theme)", value: "class" },
+                { name: "Class (.dark-theme)", value: "class:.dark-theme" },
                 { name: "Media query (prefers-color-scheme)", value: "media" },
               ],
               when: (answers) => answers.actions.includes("darkMode"),
