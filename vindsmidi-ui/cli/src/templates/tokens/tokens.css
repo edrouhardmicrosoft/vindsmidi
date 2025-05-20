@@ -1,0 +1,164 @@
+/**
+ * Fluent UI v9 Design Tokens
+ * Comprehensive token system for consistent styling
+ */
+
+:root {
+  /* ===== BRAND COLORS ===== */
+  --colorBrandBackground: #0f6cbd;
+  --colorBrandBackground1: #0f6cbd;
+  --colorBrandBackground2: #115ea3;
+  --colorBrandBackground3: #0c3b5e;
+  --colorBrandBackgroundHover: #115ea3;
+  --colorBrandBackgroundPressed: #0e4775;
+  --colorBrandBackgroundSelected: #115ea3;
+  --colorBrandForeground1: #0f6cbd;
+  --colorBrandForeground2: #115ea3;
+  --colorBrandForegroundHover: #115ea3;
+  --colorBrandForegroundPressed: #0e4775;
+  --colorBrandStroke1: #0f6cbd;
+  --colorBrandStroke2: #115ea3;
+  
+  /* ===== NEUTRAL COLORS ===== */
+  --colorNeutralForeground1: #242424;
+  --colorNeutralForeground2: #424242;
+  --colorNeutralForeground3: #616161;
+  --colorNeutralForeground4: #707070;
+  --colorNeutralForegroundDisabled: #bdbdbd;
+  --colorNeutralForegroundInverted: #ffffff;
+  
+  --colorNeutralBackground1: #ffffff;
+  --colorNeutralBackground2: #fafafa;
+  --colorNeutralBackground3: #f5f5f5;
+  --colorNeutralBackground4: #f0f0f0;
+  --colorNeutralBackground5: #e5e5e5;
+  --colorNeutralBackground6: #ffffff;
+  --colorNeutralBackground1Hover: #f5f5f5;
+  --colorNeutralBackground1Pressed: #e0e0e0;
+  --colorNeutralBackground1Selected: #f5f5f5;
+  --colorNeutralBackgroundDisabled: #f0f0f0;
+  
+  --colorNeutralStroke1: #d1d1d1;
+  --colorNeutralStroke2: #e0e0e0;
+  --colorNeutralStroke3: #f0f0f0;
+  --colorNeutralStrokeAccessible: #616161;
+  --colorNeutralStrokeDisabled: #e0e0e0;
+  
+  /* ===== STATUS COLORS ===== */
+  --colorStatusDangerBackground1: #fdf3f4;
+  --colorStatusDangerForeground1: #d13438;
+  --colorStatusDangerBorder1: #f9c8cb;
+  
+  --colorStatusSuccessBackground1: #f1faf1;
+  --colorStatusSuccessForeground1: #107c10;
+  --colorStatusSuccessBorder1: #c1e3c1;
+  
+  --colorStatusWarningBackground1: #fff9f5;
+  --colorStatusWarningForeground1: #d83b01;
+  --colorStatusWarningBorder1: #fee0cb;
+  
+  --colorStatusInfoBackground1: #f3f9fc;
+  --colorStatusInfoForeground1: #0078d4;
+  --colorStatusInfoBorder1: #cbe3f1;
+  
+  /* ===== TYPOGRAPHY ===== */
+  --fontFamilyBase: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  --fontFamilyMonospace: Consolas, monospace;
+  
+  --fontSizeBase100: 10px;
+  --fontSizeBase200: 12px;
+  --fontSizeBase300: 14px;
+  --fontSizeBase400: 16px;
+  --fontSizeBase500: 20px;
+  --fontSizeBase600: 24px;
+  
+  --fontWeightRegular: 400;
+  --fontWeightMedium: 500;
+  --fontWeightSemibold: 600;
+  --fontWeightBold: 700;
+  
+  --lineHeightBase100: 14px;
+  --lineHeightBase200: 16px;
+  --lineHeightBase300: 20px;
+  --lineHeightBase400: 22px;
+  --lineHeightBase500: 28px;
+  
+  /* ===== BORDER & SHAPE ===== */
+  --borderRadiusNone: 0;
+  --borderRadiusSmall: 2px;
+  --borderRadiusMedium: 4px;
+  --borderRadiusLarge: 6px;
+  --borderRadiusXLarge: 8px;
+  --borderRadiusCircular: 9999px;
+  
+  --strokeWidthThin: 1px;
+  --strokeWidthThick: 2px;
+  --strokeWidthThicker: 3px;
+  
+  /* ===== EFFECTS ===== */
+  --shadow2: 0 1px 2px rgba(0, 0, 0, 0.12);
+  --shadow4: 0 2px 4px rgba(0, 0, 0, 0.14);
+  --shadow8: 0 4px 8px rgba(0, 0, 0, 0.14);
+  --shadow16: 0 8px 16px rgba(0, 0, 0, 0.14);
+  
+  /* ===== SPACING ===== */
+  --spacingHorizontalNone: 0;
+  --spacingHorizontalXS: 4px;
+  --spacingHorizontalS: 8px;
+  --spacingHorizontalM: 12px;
+  --spacingHorizontalL: 16px;
+  --spacingHorizontalXL: 20px;
+  --spacingHorizontalXXL: 24px;
+  --spacingHorizontalXXXL: 32px;
+  
+  --spacingVerticalNone: 0;
+  --spacingVerticalXS: 4px;
+  --spacingVerticalS: 8px;
+  --spacingVerticalM: 12px;
+  --spacingVerticalL: 16px;
+  --spacingVerticalXL: 20px;
+  --spacingVerticalXXL: 24px;
+  --spacingVerticalXXXL: 32px;
+  
+  /* ===== COMPONENT TOKENS ===== */
+  /* Button */
+  --buttonBorderRadius: var(--borderRadiusMedium);
+  --buttonBorderWidth: var(--strokeWidthThin);
+  --buttonHeight: 32px;
+  --buttonPaddingHorizontal: var(--spacingHorizontalM);
+  
+  /* Card */
+  --cardBorderRadius: var(--borderRadiusMedium); 
+  --cardPadding: var(--spacingHorizontalL);
+  --cardBorderWidth: var(--strokeWidthThin);
+  --cardBackgroundColor: var(--colorNeutralBackground1);
+  --cardBorderColor: var(--colorNeutralStroke2);
+}
+
+/* Dark Theme Overrides */
+.dark-theme {
+  --colorNeutralForeground1: #ffffff;
+  --colorNeutralForeground2: #d6d6d6;
+  --colorNeutralForeground3: #adadad;
+  --colorNeutralForegroundDisabled: #616161;
+  
+  --colorNeutralBackground1: #1a1a1a;
+  --colorNeutralBackground2: #242424;
+  --colorNeutralBackground3: #2e2e2e;
+  --colorNeutralBackground4: #383838;
+  --colorNeutralBackground1Hover: #242424;
+  --colorNeutralBackground1Pressed: #2e2e2e;
+  
+  --colorNeutralStroke1: #575757;
+  --colorNeutralStroke2: #424242;
+  --colorNeutralStroke3: #383838;
+  
+  /* Component overrides can be added here */
+}
+
+/*
+  Usage:
+  - Reference these variables in Tailwind config or component styles for consistency.
+  - Expand this file as you add more tokens from Fluent UI v9.
+  - Source: docs/reference/fluent-ui-v9.css
+*/ 
