@@ -1,0 +1,22 @@
+import React from "react";
+
+/**
+ * Card appearance variants
+ */
+export type CardVariant = "filled" | "outline" | "subtle" | "elevated";
+
+/**
+ * Card component props
+ */
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Content to be rendered inside the card */
+  children: React.ReactNode;
+  /** Visual variant of the card */
+  variant?: CardVariant;
+  /** Enables interactive hover and focus styles */
+  interactive?: boolean;
+  /** Adds a header section to the card */
+  header?: React.ReactNode;
+  /** Adds a footer section to the card */
+  footer?: React.ReactNode;
+}

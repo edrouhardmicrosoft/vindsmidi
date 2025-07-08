@@ -335,7 +335,7 @@ function resolveDependencies(components2) {
 var import_path3 = __toESM(require("path"));
 var import_fs_extra4 = __toESM(require("fs-extra"));
 function getTemplatePath(templateName) {
-  return import_path3.default.resolve(__dirname, "..", "..", "templates", templateName);
+  return import_path3.default.resolve(__dirname, "..", "templates", templateName);
 }
 async function installComponent(component, targetDir, options = {}) {
   logger.info(`Installing component: ${component.name}`);

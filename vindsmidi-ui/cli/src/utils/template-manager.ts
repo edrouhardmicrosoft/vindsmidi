@@ -8,9 +8,8 @@ import { Component } from "../registry/schema";
  * Gets the absolute path to a template
  */
 function getTemplatePath(templateName: string): string {
-  // In a real implementation, this would resolve from the CLI's templates directory
-  // For now, we'll use a relative path for demonstration
-  return path.resolve(__dirname, "..", "..", "templates", templateName);
+  // Templates are located relative to the built CLI package in dist/
+  return path.resolve(__dirname, "..", "templates", templateName);
 }
 
 /**

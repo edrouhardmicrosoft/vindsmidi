@@ -1,0 +1,35 @@
+import React from "react";
+
+/**
+ * Variants for the Button component
+ */
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "outline"
+  | "subtle"
+  | "transparent";
+
+/**
+ * Sizes for the Button component
+ */
+export type ButtonSize = "small" | "medium" | "large";
+
+/**
+ * Button component props
+ */
+export interface ButtonProps
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "ref"> {
+  /** Content to be rendered inside the button */
+  children: React.ReactNode;
+  /** Visual variant of the button */
+  variant?: ButtonVariant;
+  /** Size of the button */
+  size?: ButtonSize;
+  /** Optional icon to display before the button text */
+  iconBefore?: React.ReactNode;
+  /** Optional icon to display after the button text */
+  iconAfter?: React.ReactNode;
+  /** Makes the button take the full width of its container */
+  fullWidth?: boolean;
+}
