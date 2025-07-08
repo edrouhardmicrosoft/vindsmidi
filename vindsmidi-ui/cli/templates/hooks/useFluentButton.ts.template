@@ -1,0 +1,28 @@
+import { useRef } from "react";
+
+/**
+ * Enhanced button hook with Fluent UI integration
+ */
+export function useFluentButton<T extends HTMLElement = HTMLButtonElement>() {
+  const ref = useRef<T | null>(null);
+
+  // Enhanced button props with accessibility
+  const buttonProps = {
+    role: "button",
+    tabIndex: 0,
+    onKeyDown: (event: React.KeyboardEvent<T>) => {
+      // Handle Enter and Space key activation
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        if (ref.current) {
+          ref.current.click();
+        }
+      }
+    },
+  };
+
+  return {
+    ref,
+    buttonProps,
+  };
+}

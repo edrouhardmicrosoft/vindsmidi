@@ -3,6 +3,7 @@ import fs from "fs-extra";
 import { logger } from "./logger";
 import { renderTemplate } from "./template";
 import { Component } from "../registry/schema";
+import { ResolvedDependencies } from "./dependency-resolver";
 
 /**
  * Gets the absolute path to a template
@@ -50,14 +51,87 @@ export async function installComponent(
 }
 
 /**
- * Installs multiple components
+ * Installs a utility by copying its template file
+ */
+export async function installUtility(
+  utility: any,
+  targetDir: string,
+  options: { overwrite?: boolean } = {}
+): Promise<void> {
+  logger.info(`Installing utility: ${utility.name}`);
+
+  const templatePath = getTemplatePath(utility.file.template);
+  const outputPath = path.join(targetDir, utility.file.path);
+
+  if (!(await fs.pathExists(templatePath))) {
+    logger.warn(`Template not found: ${utility.file.template}`);
+    return;
+  }
+
+  await renderTemplate(
+    templatePath,
+    outputPath,
+    {
+      utilityName: utility.name,
+    },
+    { overwrite: options.overwrite }
+  );
+
+  logger.success(`Installed utility: ${utility.name}`);
+}
+
+/**
+ * Installs a hook by copying its template file
+ */
+export async function installHook(
+  hook: any,
+  targetDir: string,
+  options: { overwrite?: boolean } = {}
+): Promise<void> {
+  logger.info(`Installing hook: ${hook.name}`);
+
+  const templatePath = getTemplatePath(hook.file.template);
+  const outputPath = path.join(targetDir, hook.file.path);
+
+  if (!(await fs.pathExists(templatePath))) {
+    logger.warn(`Template not found: ${hook.file.template}`);
+    return;
+  }
+
+  await renderTemplate(
+    templatePath,
+    outputPath,
+    {
+      hookName: hook.name,
+    },
+    { overwrite: options.overwrite }
+  );
+
+  logger.success(`Installed hook: ${hook.name}`);
+}
+
+/**
+ * Installs components with their dependencies (utilities and hooks)
  */
 export async function installComponents(
-  components: Component[],
+  resolved: ResolvedDependencies,
   targetDir: string,
   options: { overwrite?: boolean; installDependencies?: boolean } = {}
 ): Promise<void> {
-  for (const component of components) {
+  // Install utilities first
+  if (options.installDependencies) {
+    for (const utility of resolved.utilities) {
+      await installUtility(utility, targetDir, options);
+    }
+
+    // Install hooks
+    for (const hook of resolved.hooks) {
+      await installHook(hook, targetDir, options);
+    }
+  }
+
+  // Install components
+  for (const component of resolved.components) {
     await installComponent(component, targetDir, options);
   }
 }

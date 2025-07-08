@@ -14,7 +14,7 @@ export function registerAddCommand(program: Command): void {
     .argument("[components...]", "Component names to add")
     .option("-d, --dir <directory>", "Target directory", process.cwd())
     .option("-f, --force", "Overwrite existing files", false)
-    .option("--no-deps", "Skip installing dependencies", false)
+    .option("--no-deps", "Skip installing dependencies")
     .action(async (componentNames, options) => {
       try {
         // If no components specified, list available components
@@ -43,18 +43,19 @@ export function registerAddCommand(program: Command): void {
         spinner.start();
 
         const components = getComponents(componentNames);
-        const allComponents = options.deps
+        const resolved = options.deps
           ? resolveDependencies(components)
-          : components;
+          : { components, utilities: [], hooks: [] };
 
-        spinner.succeed(`Resolved ${allComponents.length} components`);
+        const totalItems = resolved.components.length + resolved.utilities.length + resolved.hooks.length;
+        spinner.succeed(`Resolved ${totalItems} items (${resolved.components.length} components, ${resolved.utilities.length} utilities, ${resolved.hooks.length} hooks)`);
 
         // Install components
         spinner.text = "Installing components...";
         spinner.start();
 
         const targetDir = path.join(options.dir, projectInfo.sourceDir);
-        await installComponents(allComponents, targetDir, {
+        await installComponents(resolved, targetDir, {
           overwrite: options.force,
           installDependencies: options.deps,
         });
