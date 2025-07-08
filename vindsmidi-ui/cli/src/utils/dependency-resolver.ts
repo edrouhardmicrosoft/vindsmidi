@@ -49,8 +49,12 @@ export function resolveDependencies(components: Component[]): ResolvedDependenci
 
   // Resolve component dependencies recursively
   let hasNewDependencies = true;
-  while (hasNewDependencies) {
+  let iterationCount = 0;
+  const maxIterations = 100; // Prevent infinite loops
+  
+  while (hasNewDependencies && iterationCount < maxIterations) {
     hasNewDependencies = false;
+    iterationCount++;
 
     for (const [name, dep] of unresolvedDependencies.entries()) {
       if (resolvedComponents.has(name)) {
@@ -97,6 +101,11 @@ export function resolveDependencies(components: Component[]): ResolvedDependenci
         }
       });
     }
+  }
+
+  // Check if we hit the iteration limit (potential circular dependency)
+  if (iterationCount >= maxIterations) {
+    logger.warn("Dependency resolution stopped after maximum iterations. Possible circular dependencies detected.");
   }
 
   return {

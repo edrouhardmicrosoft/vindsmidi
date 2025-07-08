@@ -31,7 +31,6 @@ var import_ora = __toESM(require("ora"));
 var import_execa = require("execa");
 
 // src/utils/logger.ts
-var import_chalk = __toESM(require("chalk"));
 var import_picocolors = __toESM(require("picocolors"));
 var logger = {
   info: (message) => {
@@ -55,11 +54,11 @@ var logger = {
     console.log(message);
   },
   title: (message) => {
-    console.log(import_chalk.default.bold(`
+    console.log(import_picocolors.default.bold(`
 ${message}`));
   },
   divider: () => {
-    console.log(import_chalk.default.dim("\u2500".repeat(40)));
+    console.log(import_picocolors.default.dim("\u2500".repeat(40)));
   },
   newLine: () => {
     console.log();
@@ -351,8 +350,11 @@ function resolveDependencies(components2) {
     });
   });
   let hasNewDependencies = true;
-  while (hasNewDependencies) {
+  let iterationCount = 0;
+  const maxIterations = 100;
+  while (hasNewDependencies && iterationCount < maxIterations) {
     hasNewDependencies = false;
+    iterationCount++;
     for (const [name, dep] of unresolvedDependencies.entries()) {
       if (resolvedComponents.has(name)) {
         unresolvedDependencies.delete(name);
@@ -391,6 +393,9 @@ function resolveDependencies(components2) {
         }
       });
     }
+  }
+  if (iterationCount >= maxIterations) {
+    logger.warn("Dependency resolution stopped after maximum iterations. Possible circular dependencies detected.");
   }
   return {
     components: Array.from(resolvedComponents.values()),
