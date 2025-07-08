@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import picocolors from "picocolors";
 
 export const logger = {
@@ -23,10 +22,10 @@ export const logger = {
     console.log(message);
   },
   title: (message: string): void => {
-    console.log(chalk.bold(`\n${message}`));
+    console.log(picocolors.bold(`\n${message}`));
   },
   divider: (): void => {
-    console.log(chalk.dim("─".repeat(40)));
+    console.log(picocolors.dim("─".repeat(40)));
   },
   newLine: (): void => {
     console.log();

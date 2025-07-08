@@ -1,12 +1,22 @@
 import { Component, ComponentDependency } from "../registry/schema";
 import { getComponent } from "../registry/components";
+import { getUtility } from "../registry/utilities";
+import { getHook } from "../registry/hooks";
 import { logger } from "./logger";
+
+export interface ResolvedDependencies {
+  components: Component[];
+  utilities: Array<{ name: string; file: any }>;
+  hooks: Array<{ name: string; file: any }>;
+}
 
 /**
  * Resolves all dependencies for a set of components
  */
-export function resolveDependencies(components: Component[]): Component[] {
+export function resolveDependencies(components: Component[]): ResolvedDependencies {
   const resolvedComponents = new Map<string, Component>();
+  const resolvedUtilities = new Map<string, any>();
+  const resolvedHooks = new Map<string, any>();
   const unresolvedDependencies = new Map<string, ComponentDependency>();
 
   // Add initial components
@@ -14,19 +24,37 @@ export function resolveDependencies(components: Component[]): Component[] {
     resolvedComponents.set(component.name, component);
   });
 
-  // Collect unresolved dependencies
+  // Collect unresolved dependencies from initial components
   components.forEach((component) => {
     component.dependencies.forEach((dep) => {
       if (dep.type === "component" && !resolvedComponents.has(dep.name)) {
         unresolvedDependencies.set(dep.name, dep);
+      } else if (dep.type === "utility" && !resolvedUtilities.has(dep.name)) {
+        const utility = getUtility(dep.name);
+        if (utility) {
+          resolvedUtilities.set(dep.name, utility);
+        } else if (!dep.optional) {
+          logger.warn(`Required utility not found: ${dep.name}`);
+        }
+      } else if (dep.type === "hook" && !resolvedHooks.has(dep.name)) {
+        const hook = getHook(dep.name);
+        if (hook) {
+          resolvedHooks.set(dep.name, hook);
+        } else if (!dep.optional) {
+          logger.warn(`Required hook not found: ${dep.name}`);
+        }
       }
     });
   });
 
-  // Resolve dependencies recursively
+  // Resolve component dependencies recursively
   let hasNewDependencies = true;
-  while (hasNewDependencies) {
+  let iterationCount = 0;
+  const maxIterations = 100; // Prevent infinite loops
+  
+  while (hasNewDependencies && iterationCount < maxIterations) {
     hasNewDependencies = false;
+    iterationCount++;
 
     for (const [name, dep] of unresolvedDependencies.entries()) {
       if (resolvedComponents.has(name)) {
@@ -56,10 +84,33 @@ export function resolveDependencies(components: Component[]): Component[] {
           !resolvedComponents.has(newDep.name)
         ) {
           unresolvedDependencies.set(newDep.name, newDep);
+        } else if (newDep.type === "utility" && !resolvedUtilities.has(newDep.name)) {
+          const utility = getUtility(newDep.name);
+          if (utility) {
+            resolvedUtilities.set(newDep.name, utility);
+          } else if (!newDep.optional) {
+            logger.warn(`Required utility not found: ${newDep.name}`);
+          }
+        } else if (newDep.type === "hook" && !resolvedHooks.has(newDep.name)) {
+          const hook = getHook(newDep.name);
+          if (hook) {
+            resolvedHooks.set(newDep.name, hook);
+          } else if (!newDep.optional) {
+            logger.warn(`Required hook not found: ${newDep.name}`);
+          }
         }
       });
     }
   }
 
-  return Array.from(resolvedComponents.values());
+  // Check if we hit the iteration limit (potential circular dependency)
+  if (iterationCount >= maxIterations) {
+    logger.warn("Dependency resolution stopped after maximum iterations. Possible circular dependencies detected.");
+  }
+
+  return {
+    components: Array.from(resolvedComponents.values()),
+    utilities: Array.from(resolvedUtilities.values()),
+    hooks: Array.from(resolvedHooks.values()),
+  };
 }

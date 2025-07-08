@@ -31,7 +31,6 @@ var import_ora = __toESM(require("ora"));
 var import_execa = require("execa");
 
 // src/utils/logger.ts
-var import_chalk = __toESM(require("chalk"));
 var import_picocolors = __toESM(require("picocolors"));
 var logger = {
   info: (message) => {
@@ -55,11 +54,11 @@ var logger = {
     console.log(message);
   },
   title: (message) => {
-    console.log(import_chalk.default.bold(`
+    console.log(import_picocolors.default.bold(`
 ${message}`));
   },
   divider: () => {
-    console.log(import_chalk.default.dim("\u2500".repeat(40)));
+    console.log(import_picocolors.default.dim("\u2500".repeat(40)));
   },
   newLine: () => {
     console.log();
@@ -286,9 +285,45 @@ function getComponentNames() {
   return components.map((c) => c.name);
 }
 
+// src/registry/utilities.ts
+var utilities = [
+  {
+    name: "cn",
+    description: "Utility function to merge class names conditionally",
+    dependencies: ["clsx", "tailwind-merge"],
+    file: {
+      name: "cn.ts",
+      path: "utils/cn.ts",
+      template: "utils/cn.ts.template"
+    }
+  }
+];
+function getUtility(name) {
+  return utilities.find((u) => u.name === name);
+}
+
+// src/registry/hooks.ts
+var hooks = [
+  {
+    name: "useFluentButton",
+    description: "Enhanced button hook with Fluent UI integration",
+    dependencies: [],
+    file: {
+      name: "useFluentButton.ts",
+      path: "hooks/useFluentButton.ts",
+      template: "hooks/useFluentButton.ts.template"
+    }
+  }
+];
+function getHook(name) {
+  return hooks.find((h) => h.name === name);
+}
+
 // src/utils/dependency-resolver.ts
 function resolveDependencies(components2) {
   const resolvedComponents = /* @__PURE__ */ new Map();
+  const resolvedUtilities = /* @__PURE__ */ new Map();
+  const resolvedHooks = /* @__PURE__ */ new Map();
   const unresolvedDependencies = /* @__PURE__ */ new Map();
   components2.forEach((component) => {
     resolvedComponents.set(component.name, component);
@@ -297,12 +332,29 @@ function resolveDependencies(components2) {
     component.dependencies.forEach((dep) => {
       if (dep.type === "component" && !resolvedComponents.has(dep.name)) {
         unresolvedDependencies.set(dep.name, dep);
+      } else if (dep.type === "utility" && !resolvedUtilities.has(dep.name)) {
+        const utility = getUtility(dep.name);
+        if (utility) {
+          resolvedUtilities.set(dep.name, utility);
+        } else if (!dep.optional) {
+          logger.warn(`Required utility not found: ${dep.name}`);
+        }
+      } else if (dep.type === "hook" && !resolvedHooks.has(dep.name)) {
+        const hook = getHook(dep.name);
+        if (hook) {
+          resolvedHooks.set(dep.name, hook);
+        } else if (!dep.optional) {
+          logger.warn(`Required hook not found: ${dep.name}`);
+        }
       }
     });
   });
   let hasNewDependencies = true;
-  while (hasNewDependencies) {
+  let iterationCount = 0;
+  const maxIterations = 100;
+  while (hasNewDependencies && iterationCount < maxIterations) {
     hasNewDependencies = false;
+    iterationCount++;
     for (const [name, dep] of unresolvedDependencies.entries()) {
       if (resolvedComponents.has(name)) {
         unresolvedDependencies.delete(name);
@@ -324,18 +376,39 @@ function resolveDependencies(components2) {
       component.dependencies.forEach((newDep) => {
         if (newDep.type === "component" && !resolvedComponents.has(newDep.name)) {
           unresolvedDependencies.set(newDep.name, newDep);
+        } else if (newDep.type === "utility" && !resolvedUtilities.has(newDep.name)) {
+          const utility = getUtility(newDep.name);
+          if (utility) {
+            resolvedUtilities.set(newDep.name, utility);
+          } else if (!newDep.optional) {
+            logger.warn(`Required utility not found: ${newDep.name}`);
+          }
+        } else if (newDep.type === "hook" && !resolvedHooks.has(newDep.name)) {
+          const hook = getHook(newDep.name);
+          if (hook) {
+            resolvedHooks.set(newDep.name, hook);
+          } else if (!newDep.optional) {
+            logger.warn(`Required hook not found: ${newDep.name}`);
+          }
         }
       });
     }
   }
-  return Array.from(resolvedComponents.values());
+  if (iterationCount >= maxIterations) {
+    logger.warn("Dependency resolution stopped after maximum iterations. Possible circular dependencies detected.");
+  }
+  return {
+    components: Array.from(resolvedComponents.values()),
+    utilities: Array.from(resolvedUtilities.values()),
+    hooks: Array.from(resolvedHooks.values())
+  };
 }
 
 // src/utils/template-manager.ts
 var import_path3 = __toESM(require("path"));
 var import_fs_extra4 = __toESM(require("fs-extra"));
 function getTemplatePath(templateName) {
-  return import_path3.default.resolve(__dirname, "..", "..", "templates", templateName);
+  return import_path3.default.resolve(__dirname, "..", "templates", templateName);
 }
 async function installComponent(component, targetDir, options = {}) {
   logger.info(`Installing component: ${component.name}`);
@@ -359,8 +432,52 @@ async function installComponent(component, targetDir, options = {}) {
   }
   logger.success(`Component ${component.name} installed successfully`);
 }
-async function installComponents(components2, targetDir, options = {}) {
-  for (const component of components2) {
+async function installUtility(utility, targetDir, options = {}) {
+  logger.info(`Installing utility: ${utility.name}`);
+  const templatePath = getTemplatePath(utility.file.template);
+  const outputPath = import_path3.default.join(targetDir, utility.file.path);
+  if (!await import_fs_extra4.default.pathExists(templatePath)) {
+    logger.warn(`Template not found: ${utility.file.template}`);
+    return;
+  }
+  await renderTemplate(
+    templatePath,
+    outputPath,
+    {
+      utilityName: utility.name
+    },
+    { overwrite: options.overwrite }
+  );
+  logger.success(`Installed utility: ${utility.name}`);
+}
+async function installHook(hook, targetDir, options = {}) {
+  logger.info(`Installing hook: ${hook.name}`);
+  const templatePath = getTemplatePath(hook.file.template);
+  const outputPath = import_path3.default.join(targetDir, hook.file.path);
+  if (!await import_fs_extra4.default.pathExists(templatePath)) {
+    logger.warn(`Template not found: ${hook.file.template}`);
+    return;
+  }
+  await renderTemplate(
+    templatePath,
+    outputPath,
+    {
+      hookName: hook.name
+    },
+    { overwrite: options.overwrite }
+  );
+  logger.success(`Installed hook: ${hook.name}`);
+}
+async function installComponents(resolved, targetDir, options = {}) {
+  if (options.installDependencies) {
+    for (const utility of resolved.utilities) {
+      await installUtility(utility, targetDir, options);
+    }
+    for (const hook of resolved.hooks) {
+      await installHook(hook, targetDir, options);
+    }
+  }
+  for (const component of resolved.components) {
     await installComponent(component, targetDir, options);
   }
 }
@@ -497,7 +614,7 @@ async function detectProject(dir) {
 
 // src/commands/add.ts
 function registerAddCommand(program) {
-  program.command("add").description("Add components to your project").argument("[components...]", "Component names to add").option("-d, --dir <directory>", "Target directory", process.cwd()).option("-f, --force", "Overwrite existing files", false).option("--no-deps", "Skip installing dependencies", false).action(async (componentNames, options) => {
+  program.command("add").description("Add components to your project").argument("[components...]", "Component names to add").option("-d, --dir <directory>", "Target directory", process.cwd()).option("-f, --force", "Overwrite existing files", false).option("--no-deps", "Skip installing dependencies").action(async (componentNames, options) => {
     try {
       if (!componentNames.length) {
         logger.title("Available Components");
@@ -518,12 +635,13 @@ function registerAddCommand(program) {
       spinner.text = "Resolving components...";
       spinner.start();
       const components2 = getComponents(componentNames);
-      const allComponents = options.deps ? resolveDependencies(components2) : components2;
-      spinner.succeed(`Resolved ${allComponents.length} components`);
+      const resolved = options.deps ? resolveDependencies(components2) : { components: components2, utilities: [], hooks: [] };
+      const totalItems = resolved.components.length + resolved.utilities.length + resolved.hooks.length;
+      spinner.succeed(`Resolved ${totalItems} items (${resolved.components.length} components, ${resolved.utilities.length} utilities, ${resolved.hooks.length} hooks)`);
       spinner.text = "Installing components...";
       spinner.start();
       const targetDir = import_path6.default.join(options.dir, projectInfo.sourceDir);
-      await installComponents(allComponents, targetDir, {
+      await installComponents(resolved, targetDir, {
         overwrite: options.force,
         installDependencies: options.deps
       });

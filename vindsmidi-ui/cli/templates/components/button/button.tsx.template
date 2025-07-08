@@ -1,28 +1,43 @@
-import * as React from 'react';
+import React from "react";
+import { cn } from "../utils/cn";
+import { buttonVariants } from "./variants";
+import type { ButtonProps } from "./button.types";
 
 /**
- * Button component using the Component Shell Pattern
+ * Button component using Fluent UI styling with Tailwind CSS
  */
-export const Button = React.forwardRef<HTMLButtonElement, any>(
-  ({ 
-    variant = 'primary', 
-    size = 'md', 
-    className, 
-    disabled = false, 
-    children, 
-    ...props 
-  }, ref) => {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      children,
+      className,
+      variant = "primary",
+      size = "medium",
+      iconBefore,
+      iconAfter,
+      fullWidth = false,
+      disabled = false,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <button
         ref={ref}
-        className={`button button-${variant} button-${size}`}
+        type="button"
+        className={cn(
+          buttonVariants({ variant, size, fullWidth }),
+          className
+        )}
         disabled={disabled}
         {...props}
       >
+        {iconBefore && <span className="mr-2">{iconBefore}</span>}
         {children}
+        {iconAfter && <span className="ml-2">{iconAfter}</span>}
       </button>
     );
   }
 );
 
-Button.displayName = 'Button'; 
+Button.displayName = "Button"; 
